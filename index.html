@@ -7,7 +7,7 @@
   <meta name="description" content="Noor — prayer times, Quran, Qibla, duas, dhikr, Hijri calendar, moon sighting and Islamic learning tools." />
   <meta name="google" content="notranslate" />
   <base href="/prayer-app/" />
-  <link rel="manifest" href="manifest.webmanifest?v=18" />
+  <link rel="manifest" href="manifest.webmanifest?v=19" />
   <script>
     (function(){
       try {
@@ -23,7 +23,7 @@
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="default" />
   <link rel="icon" href="icon.svg" type="image/svg+xml" />
-  <link rel="stylesheet" href="styles-v18.css?v=18" />
+  <link rel="stylesheet" href="styles-v20.css?v=20" />
   <title>Noor — Prayer & Quran</title>
 </head>
 <body>
@@ -59,8 +59,9 @@
         </div>
         <div class="top-actions">
           <button class="install-btn hidden" id="installBtn">Install</button>
-          <button class="icon-btn" id="refreshBtn" title="Refresh data" aria-label="Refresh data">↻</button>
-          <button class="icon-btn" id="settingsBtn" title="Settings" aria-label="Settings">⚙</button>
+          <button class="icon-btn header-icon" id="refreshBtn" title="Refresh data" aria-label="Refresh data">↻</button>
+          <button class="icon-btn header-icon theme-top-btn" id="themeBtn" title="Switch theme" aria-label="Switch theme">☾</button>
+          <button class="icon-btn header-icon" id="settingsBtn" title="Settings" aria-label="Settings">⚙</button>
         </div>
       </header>
 
@@ -134,9 +135,9 @@
 
       <section id="view-quran" class="view">
         <div class="page-intro"><div><div class="eyebrow">AL-QURAN</div><h2>Quran</h2><p>Read the Quran with source-provided Arabic text. Noor does not AI-rewrite Quranic verses.</p></div><button class="secondary-btn" id="quranSettingsBtn">Quran settings</button></div>
-        <div class="quran-integrity-card"><strong>Quran integrity mode</strong><span>Arabic is shown exactly as returned by the selected Quran text source. The Urdu option uses the source-provided Fateh Muhammad Jalandhry translation; Noor does not AI-translate or rewrite Quranic text.</span></div>
+        <div class="quran-integrity-card"><strong>Quran integrity mode</strong><span>Arabic is shown exactly as returned by the selected Quran text source. Urdu is available above and uses the source-provided Fateh Muhammad Jalandhry translation. Noor does not AI-translate, paraphrase, or rewrite Quranic text.</span></div>
         <div class="quran-goal-card" id="quranGoalCard"></div>
-        <div class="quran-toolbar"><input id="quranSearch" placeholder="Search surah name…" autocomplete="off" /><select id="editionSelect" aria-label="Quran translation"><option value="en.sahih">English — Saheeh International</option><option value="ur.jalandhry">Urdu — Fateh Muhammad Jalandhry</option><option value="both">English + Urdu</option><option value="en.asad">English — Muhammad Asad</option></select></div>
+        <div class="quran-toolbar"><input id="quranSearch" placeholder="Search surah name…" autocomplete="off" /><div class="translation-picker" role="group" aria-label="Quran translation"><span class="translation-label">Translation</span><button type="button" class="translation-chip" data-edition="en.sahih">English</button><button type="button" class="translation-chip" data-edition="ur.jalandhry">اردو</button><button type="button" class="translation-chip" data-edition="both">Both</button><select id="editionSelect" aria-label="Quran translation" class="sr-only-select"><option value="en.sahih">English — Saheeh International</option><option value="ur.jalandhry">Urdu — Fateh Muhammad Jalandhry</option><option value="both">English + Urdu</option><option value="en.asad">English — Muhammad Asad</option></select></div></div>
         <div class="quran-actions"><button class="secondary-btn" id="continueQuranBtn">Continue reading</button><button class="secondary-btn" id="bookmarksBtn">Bookmarks</button><button class="secondary-btn" id="quranSearchWebBtn">Search verses</button><button class="secondary-btn" id="quranGoalBtn">Reading goal</button></div>
         <div id="quranSearchResults" class="search-results hidden"></div>
         <div id="surahList" class="surah-list"></div>
@@ -154,7 +155,7 @@
                 <div class="compass-ring"></div>
                 <div class="compass-ticks" aria-hidden="true"></div>
                 <div class="north">N</div><div class="east">E</div><div class="south">S</div><div class="west">W</div>
-                <div class="qibla-target" id="qiblaTarget" aria-hidden="true"><span class="qibla-target-title">QIBLA</span><span class="qibla-target-sub">ALIGN</span></div>
+                <div class="qibla-target" id="qiblaTarget" aria-hidden="true"><span class="qibla-target-title">QIBLA</span><span class="qibla-target-sub">FACE HERE</span></div>
                 <div class="needle" id="needle"><div class="needle-tip"></div><div class="needle-tail"></div></div>
                 <div class="kaaba-mark"><span>✦</span></div>
                 <div class="compass-center"></div>
@@ -163,7 +164,7 @@
             </div>
             <div class="qibla-degree" id="qiblaDegree">—°</div>
             <div class="qibla-sub" id="qiblaSub">Enable location to calculate Qibla.</div>
-            <div class="qibla-guide" id="qiblaGuide">Turn your phone until the arrow enters the Qibla box.</div>
+            <div class="qibla-guide" id="qiblaGuide">Turn your phone until the arrow lines up with the QIBLA box.</div>
             <div class="qibla-actions"><button class="primary-btn" id="calibrateBtn">Enable live phone compass</button><button class="secondary-btn" id="resetCompassBtn" type="button">Reset direction</button></div>
           </div>
           <div class="qibla-facts">
@@ -191,8 +192,8 @@
 
       <section id="view-tools" class="view">
         <div class="page-intro"><div><div class="eyebrow">EVERYDAY</div><h2>Islamic Tools</h2><p>Daily dhikr, duas, Asma al-Husna, Hijri dates, Ramadan planning, zakat and nearby mosque links.</p></div></div>
-        <div id="toolPanel" class="tool-panel hidden" aria-live="polite"></div>
         <div class="tool-grid">
+          <div id="toolPanel" class="tool-panel hidden" aria-live="polite"></div>
           <button class="tool-card" data-tool="tasbih"><span>◌</span><strong>Tasbih</strong><small>Dhikr counter with saved count</small></button>
           <button class="tool-card" data-tool="duas"><span>✦</span><strong>Daily Duas</strong><small>Morning, evening and everyday duas</small></button>
           <button class="tool-card" data-tool="names"><span>99</span><strong>99 Names of Allah</strong><small>Full Asma al-Husna list</small></button>
@@ -257,6 +258,6 @@
 
   <script src="community-config.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <script src="app-v18.js?v=18"></script>
+  <script src="app-v20.js?v=20"></script>
 </body>
 </html>

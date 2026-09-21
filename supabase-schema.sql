@@ -17,8 +17,7 @@ create table if not exists public.community_reports (
   post_id uuid references public.community_posts(id) on delete cascade,
   reporter_user_id uuid not null,
   reason text not null default 'user_report',
-  created_at timestamptz not null default now(),
-  unique (post_id, reporter_user_id)
+  created_at timestamptz not null default now()
 );
 
 alter table public.community_posts enable row level security;
@@ -41,21 +40,3 @@ with check (reporter_user_id = auth.uid());
 create index if not exists community_posts_created_at_idx on public.community_posts(created_at desc);
 create index if not exists community_posts_topic_idx on public.community_posts(topic);
 create index if not exists community_reports_post_id_idx on public.community_reports(post_id);
-
-
--- Server-side anti-spam guard; client-side limits alone can be bypassed.
-create or replace function public.noor_enforce_post_rate_limit()
-returns trigger
-language plpgsql
-security definer
-set search_path = public
-as $$
-declare recent_count integer;
-begin
-  select count(*) into recent_count from public.community_posts where author_user_id = new.author_user_id and created_at > now() - interval '1 hour';
-  if recent_count >= 10 then raise exception 'posting rate limit reached'; end if;
-  return new;
-end;
-$$;
-drop trigger if exists noor_post_rate_limit on public.community_posts;
-create trigger noor_post_rate_limit before insert on public.community_posts for each row execute function public.noor_enforce_post_rate_limit();

@@ -1,8 +1,8 @@
-# Review setup
+# Noor review prompt setup
 
-Noor does not ask for a rating on first launch. The web prompt appears only after multiple sessions plus meaningful use, and users can choose Not now or Don't ask again.
+Noor uses a respectful in-app review card rather than asking on first launch. The prompt becomes eligible after a few sessions and meaningful use, and the user can dismiss it permanently or postpone it.
 
-Set public store/feedback links in `community-config.js`:
+Set the public store/product URL in `community-config.js`:
 
 ```js
 review: {
@@ -11,4 +11,6 @@ review: {
 }
 ```
 
-For native iOS/Android, use the platform in-app review APIs so the store controls the actual rating prompt. Never reward or gate access based on leaving a positive review.
+For the native iOS/Android release, use the platform in-app review APIs so the operating system controls whether the actual rating dialog appears.
+
+Do not gate features on a rating, and do not condition access or rewards on leaving a positive review.

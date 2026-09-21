@@ -20,3 +20,11 @@ The web build now includes a privacy page, local-data reset, default Adhan sourc
 
 ## v5 content additions
 Prophet stories are concise Quran-based summaries with references and lessons. Islamic-event dates are presented as calculated dates and explicitly note that local moon sighting/community practice can differ.
+
+
+## v9 final visual + Qibla pass
+- Refreshed the visual system with deeper emerald, midnight blue, gold and warm parchment accents while keeping the app calm and readable.
+- Reworked Qibla UI with a clearer fixed-bearing mode, live phone compass status, accessible direction labels and an interactive desktop/tablet drag preview.
+- Added more explicit messaging that real motion requires a supported device sensor; desktop users still get the exact Qibla bearing.
+- Live compass now prefers `deviceorientationabsolute` and falls back to `deviceorientation`, supports iOS `webkitCompassHeading`, applies screen orientation, and reports when sensors do not respond.
+- Service-worker cache bumped to v9.

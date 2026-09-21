@@ -6,6 +6,7 @@
   <meta name="theme-color" content="#0b5b4e" />
   <meta name="description" content="Noor — prayer times, Quran, Qibla, duas, dhikr, Hijri calendar, moon sighting and Islamic learning tools." />
   <meta name="google" content="notranslate" />
+  <meta name="google" content="notranslate" />
   <link rel="manifest" href="manifest.webmanifest" />
   <meta name="theme-color" content="#0b5b4e" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -76,8 +77,6 @@
           </section>
         </div>
 
-        <section id="reviewCard" class="review-card hidden" aria-live="polite"></section>
-
         <section class="section">
           <div class="section-head"><h2>Today’s prayer times</h2><button class="text-btn" data-view-jump="prayer">Full schedule →</button></div>
           <div id="prayerCards" class="prayer-cards"></div>
@@ -134,17 +133,29 @@
       <section id="view-qibla" class="view">
         <div class="page-intro"><div><div class="eyebrow">QIBLA</div><h2>Find the Qibla</h2><p>Uses the great-circle bearing from your current coordinates to the Kaaba.</p></div><button class="primary-btn" id="qiblaLocateBtn">Use precise location</button></div>
         <div class="qibla-layout">
-          <div class="compass-card">
-            <div class="compass" id="compass"><div class="compass-ring"></div><div class="north">N</div><div class="needle" id="needle"><div class="needle-tip"></div><div class="needle-tail"></div></div><div class="kaaba-mark">▣</div></div>
+          <div class="compass-card qibla-showcase">
+            <div class="qibla-mode-row"><span class="mode-pill" id="compassModePill">FIXED BEARING</span><span class="sensor-status" id="compassStatus">Waiting for direction</span></div>
+            <div class="compass-wrap">
+              <div class="compass" id="compass" aria-label="Qibla compass. On desktop, drag to preview device rotation.">
+                <div class="compass-glow"></div>
+                <div class="compass-ring"></div>
+                <div class="compass-ticks" aria-hidden="true"></div>
+                <div class="north">N</div><div class="east">E</div><div class="south">S</div><div class="west">W</div>
+                <div class="needle" id="needle"><div class="needle-tip"></div><div class="needle-tail"></div></div>
+                <div class="kaaba-mark"><span>✦</span></div>
+                <div class="compass-center"></div>
+              </div>
+              <div class="compass-help" id="compassHelp">On desktop, drag around the dial to preview how the Qibla moves as you turn. On a supported phone, enable the live compass and hold it flat.</div>
+            </div>
             <div class="qibla-degree" id="qiblaDegree">—°</div>
             <div class="qibla-sub" id="qiblaSub">Enable location to calculate Qibla.</div>
-            <button class="secondary-btn" id="calibrateBtn">Enable live phone compass</button>
+            <div class="qibla-actions"><button class="primary-btn" id="calibrateBtn">Enable live phone compass</button><button class="secondary-btn" id="resetCompassBtn" type="button">Reset direction</button></div>
           </div>
           <div class="qibla-facts">
-            <div class="fact"><span>Qibla bearing</span><strong id="qiblaBearingText">—</strong></div>
-            <div class="fact"><span>Distance to Kaaba</span><strong id="qiblaDistanceText">—</strong></div>
-            <div class="fact"><span>Coordinates</span><strong id="qiblaCoords">—</strong></div>
-            <div class="fact note"><span>Compass note</span><p>The Qibla bearing is always calculated from your coordinates. On a phone with a supported compass, enable live mode and hold the phone flat while turning. On desktop, use the degree and north marker on the fixed dial.</p></div>
+            <div class="fact fact-feature"><span>Qibla bearing</span><strong id="qiblaBearingText">—</strong><small>Clockwise from true North</small></div>
+            <div class="fact fact-feature"><span>Distance to Kaaba</span><strong id="qiblaDistanceText">—</strong><small>Great-circle distance</small></div>
+            <div class="fact fact-feature"><span>Your coordinates</span><strong id="qiblaCoords">—</strong><small>Used only for local calculation</small></div>
+            <div class="fact note"><span>How Noor determines Qibla</span><p>The direction is calculated from your saved coordinates to the Kaaba. The fixed bearing remains valid on every device. Live movement needs a phone/tablet compass sensor; desktops usually do not have one, so Noor provides an interactive drag preview instead.</p></div>
           </div>
         </div>
       </section>
@@ -219,7 +230,7 @@
         </div>
         <label class="setting-row"><span>12-hour clock</span><input id="clockToggle" type="checkbox" /></label>
         <label class="setting-row"><span>Apply local correction to prayer times (minutes)</span><input id="adjustmentInput" type="number" value="0" min="-30" max="30" step="1" /></label>
-        <div class="setting-note"><strong>Privacy</strong><p>Your precise coordinates and settings are stored locally on this device by Noor. They are sent to the timing/geocoding services only when you request location-based features.</p><div class="privacy-actions"><a class="text-btn" href="privacy.html" target="_blank" rel="noopener">Privacy details →</a><button class="text-btn" id="resetSettingsBtn" type="button">Reset local data →</button></div></div><div class="setting-note"><strong>Feedback & review</strong><p>Use this anytime to send private feedback or open Noor’s store review page once it is configured.</p><div class="privacy-actions"><button class="text-btn" id="settingsReviewBtn" type="button">Review Noor →</button><button class="text-btn" id="settingsFeedbackBtn" type="button">Send feedback →</button></div></div>
+        <div class="setting-note"><strong>Privacy</strong><p>Your precise coordinates and settings are stored locally on this device by Noor. They are sent to the timing/geocoding services only when you request location-based features.</p><div class="privacy-actions"><a class="text-btn" href="privacy.html" target="_blank" rel="noopener">Privacy details →</a><button class="text-btn" id="resetSettingsBtn" type="button">Reset local data →</button></div></div>
       </div>
       <div class="modal-foot"><button class="primary-btn" id="saveSettings">Save settings</button></div>
     </div>

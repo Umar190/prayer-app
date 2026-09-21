@@ -16,11 +16,3 @@ Calculated dates come from the selected Hijri calendar service. The app distingu
 
 ## Gamification
 Noor Points are app engagement points only. They are not presented as religious reward, piety, status, or a substitute for sincere worship.
-
-
-## Review platform guidance
-- Apple ratings/reviews: https://developer.apple.com/app-store/ratings-and-reviews/
-- Apple StoreKit review action: https://developer.apple.com/documentation/storekit/requestreviewaction
-- Google Play in-app review: https://developer.android.com/guide/playcore/in-app-review/kotlin-java
-- Muslim Pro features: https://www.muslimpro.com/features/
-- Muslim Pro free/premium: https://support.muslimpro.com/help/en/articles/what-is-the-difference-between-the-free-and-premium-versions-of-muslim-pro

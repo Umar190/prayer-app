@@ -15,15 +15,16 @@ const DISPLAY_PRAYERS = ['Fajr','Sunrise','Dhuhr','Asr','Maghrib','Isha','Midnig
 const ARABIC = { Fajr:'فجر', Dhuhr:'ظهر', Asr:'عصر', Maghrib:'مغرب', Isha:'عشاء' };
 
 const DUAS = [
-  {title:'On waking', arabic:'الْحَمْدُ لِلَّهِ الَّذِي أَحْيَانَا بَعْدَ مَا أَمَاتَنَا وَإِلَيْهِ النُّشُورُ', english:'All praise is for Allah Who gave us life after causing us to die, and to Him is the resurrection.', source:'Sahih al-Bukhari 6324', url:'https://sunnah.com/bukhari:6324'},
-  {title:'Before sleeping', arabic:'بِاسْمِكَ اللَّهُمَّ أَمُوتُ وَأَحْيَا', english:'In Your name, O Allah, I die and I live.', source:'Sahih al-Bukhari 6324', url:'https://sunnah.com/bukhari:6324'},
-  {title:'Before eating', arabic:'بِسْمِ اللَّهِ', english:'In the name of Allah.', source:'Riyad as-Salihin, Book of Eating', url:'https://sunnah.com/riyadussalihin/2/8'},
-  {title:'After eating', arabic:'الْحَمْدُ لِلَّهِ الَّذِي أَطْعَمَنِي هَذَا وَرَزَقَنِيهِ مِنْ غَيْرِ حَوْلٍ مِنِّي وَلَا قُوَّةٍ', english:'All praise is due to Allah who fed me this and provided it for me without any strength or power from me.', source:'Jami` at-Tirmidhi 3458', url:'https://sunnah.com/tirmidhi/48/89'},
-  {title:'Leaving home', arabic:'بِسْمِ اللَّهِ، تَوَكَّلْتُ عَلَى اللَّهِ، وَلَا حَوْلَ وَلَا قُوَّةَ إِلَّا بِاللَّهِ', english:'In the name of Allah, I place my trust in Allah. There is no power or strength except with Allah.', source:'Riyad as-Salihin 83', url:'https://sunnah.com/riyadussalihin/83'},
-  {title:'Entering the home', arabic:'بِسْمِ اللهِ وَلَجْنَا، وَبِسْمِ اللهِ خَرَجْنَا، وَعَلَى رَبِّنَا تَوَكّلْنَا', english:'In the name of Allah we enter, in the name of Allah we leave, and upon our Lord we rely.', source:'Hisn al-Muslim 18', url:'https://sunnah.com/hisn/18'},
-  {title:'Rabbana atina', arabic:'رَبَّنَا آتِنَا فِي الدُّنْيَا حَسَنَةً وَفِي الْآخِرَةِ حَسَنَةً وَقِنَا عَذَابَ النَّارِ', english:'Our Lord, grant us good in this world and good in the Hereafter, and protect us from the punishment of the Fire.', source:"Qur'an 2:201", url:'https://quran.com/2/201'},
-  {title:'Protection', arabic:'أَعُوذُ بِكَلِمَاتِ اللَّهِ التَّامَّاتِ مِنْ شَرِّ مَا خَلَقَ', english:'I seek refuge in the perfect words of Allah from the evil of what He has created.', source:'Sahih Muslim 2708b', url:'https://sunnah.com/muslim:2708b'},
-  {title:'Morning', arabic:'اللَّهُمَّ بِكَ أَصْبَحْنَا وَبِكَ أَمْسَيْنَا وَبِكَ نَحْيَا وَبِكَ نَمُوتُ وَإِلَيْكَ النُّشُورُ', english:'O Allah, by You we enter the morning and by You we enter the evening; by You we live and by You we die, and to You is the resurrection.', source:'Sunan Ibn Majah 3868', url:'https://sunnah.com/ibnmajah/34/42'}
+  {title:'On waking', arabic:'الْحَمْدُ لِلَّهِ الَّذِي أَحْيَانَا بَعْدَ مَا أَمَاتَنَا وَإِلَيْهِ النُّشُورُ', english:'All praise is for Allah who gave us life after causing us to die, and to Him is the resurrection.'},
+  {title:'Before sleeping', arabic:'بِاسْمِكَ اللَّهُمَّ أَمُوتُ وَأَحْيَا', english:'In Your name, O Allah, I die and I live.'},
+  {title:'Before eating', arabic:'بِسْمِ اللَّهِ', english:'In the name of Allah.'},
+  {title:'After eating', arabic:'الْحَمْدُ لِلَّهِ الَّذِي أَطْعَمَنِي هَذَا وَرَزَقَنِيهِ مِنْ غَيْرِ حَوْلٍ مِنِّي وَلَا قُوَّةٍ', english:'Praise is due to Allah who fed me this and provided it for me without any might or power from me.'},
+  {title:'Leaving home', arabic:'بِسْمِ اللَّهِ، تَوَكَّلْتُ عَلَى اللَّهِ، وَلَا حَوْلَ وَلَا قُوَّةَ إِلَّا بِاللَّهِ', english:'In the name of Allah, I place my trust in Allah. There is no power or strength except with Allah.'},
+  {title:'Entering the home', arabic:'بِسْمِ اللَّهِ وَلَجْنَا، وَبِسْمِ اللَّهِ خَرَجْنَا، وَعَلَى اللَّهِ رَبِّنَا تَوَكَّلْنَا', english:'In the name of Allah we enter, in the name of Allah we leave, and upon our Lord we rely.'},
+  {title:'Rabbana atina', arabic:'رَبَّنَا آتِنَا فِي الدُّنْيَا حَسَنَةً وَفِي الْآخِرَةِ حَسَنَةً وَقِنَا عَذَابَ النَّارِ', english:'Our Lord, grant us good in this world and good in the Hereafter, and protect us from the punishment of the Fire.'},
+  {title:'Protection', arabic:'أَعُوذُ بِكَلِمَاتِ اللَّهِ التَّامَّاتِ مِنْ شَرِّ مَا خَلَقَ', english:'I seek refuge in the perfect words of Allah from the evil of what He has created.'},
+  {title:'Morning / evening', arabic:'اللَّهُمَّ بِكَ أَصْبَحْنَا وَبِكَ أَمْسَيْنَا، وَبِكَ نَحْيَا وَبِكَ نَمُوتُ وَإِلَيْكَ النُّشُورُ', english:'O Allah, by You we enter the morning and by You we enter the evening; by You we live and by You we die, and to You is the resurrection.'},
+  {title:'Forgiveness', arabic:'رَبِّ اغْفِرْ لِي وَتُبْ عَلَيَّ إِنَّكَ أَنْتَ التَّوَّابُ الرَّحِيمُ', english:'My Lord, forgive me and accept my repentance; surely You are the One who accepts repentance, the Merciful.'}
 ];
 
 const DAILY_AYAHS = [
@@ -59,17 +60,16 @@ const PROPHET_STORIES = [
 
 const ISLAMIC_EVENTS = [
   {month:1,day:1,name:'1 Muharram',type:'Islamic New Year',note:'Beginning of the Hijri year. The exact civil date can vary with moon-sighting practice.'},
-  {month:1,day:9,name:'Tasu‘a',type:'Recommended fast',note:'9 Muharram. Some Muslims fast this day alongside Ashura.'},
-  {month:1,day:10,name:'Ashura',type:'Recommended fast',note:'10 Muharram. A voluntary fast associated with the day; practices and calendars can differ.'},
-  {month:7,day:27,name:'Isra and Mi‘raj (commonly associated)',type:'Commemorative date',note:'Some communities associate this event with 27 Rajab. The exact historical date is disputed and commemorative practice is not universal.'},
-  {month:8,day:15,name:'Mid-Sha‘ban (commonly observed)',type:'Community-dependent',note:'Some communities observe or commemorate 15 Sha‘ban. Practice and the significance assigned to the date vary between communities.'},
+  {month:1,day:10,name:'Ashura',type:'Recommended fast',note:'10 Muharram. Many Muslims observe a voluntary fast; practices and calendars can differ.'},
+  {month:7,day:27,name:'Isra and Mi‘raj',type:'Commemorative date',note:'Often associated with 27 Rajab; observance and exact date are not universal.'},
+  {month:8,day:15,name:'Mid-Sha‘ban',type:'Commemorative date',note:'Often associated with 15 Sha‘ban; observance varies between communities.'},
   {month:9,day:1,name:'Start of Ramadan',type:'Fasting month',note:'The first day of Ramadan begins the obligatory fast; local moon sighting can shift the date.'},
   {month:9,day:27,name:'Laylat al-Qadr period',type:'Night of worship',note:'27 Ramadan is commonly highlighted, while the exact Night of Decree is sought among the last ten nights.'},
   {month:10,day:1,name:'Eid al-Fitr',type:'Festival',note:'1 Shawwal. Eid date follows the completion of Ramadan and can vary with moon sighting.'},
   {month:12,day:8,name:'Start of Hajj days',type:'Hajj',note:'The days of Hajj intensify through 8–13 Dhul-Hijjah.'},
   {month:12,day:9,name:'Day of Arafah',type:'Recommended fast',note:'9 Dhul-Hijjah. For those not performing Hajj, fasting this day is widely practiced.'},
   {month:12,day:10,name:'Eid al-Adha',type:'Festival',note:'10 Dhul-Hijjah. Begins during the Hajj season and follows the lunar calendar.'},
-  {month:3,day:12,name:'Mawlid (commonly observed)',type:'Community-dependent',note:'Some communities observe Mawlid around 12 Rabi‘ al-Awwal. The exact birth date is disputed and commemoration is not universal.'}
+  {month:3,day:12,name:'Mawlid (commonly observed)',type:'Community-dependent',note:'Often observed on 12 Rabi‘ al-Awwal by some communities; this observance is not universal.'}
 ];
 
 const MOON_COUNTRY_GUIDE = [
@@ -130,10 +130,10 @@ const state = {
   prayer:null, hijri:null, calendar:[], method:3, school:1, highLat:'NightMiddle',
   adjustment:0, use12h:false, notifications:false, reminderOffset:0, notificationPrayers:{Fajr:true,Dhuhr:true,Asr:true,Maghrib:true,Isha:true}, adhanEnabled:true, adhanAudioUrl:DEFAULT_ADHAN_URL, nextPrayer:null,
   quranChapters:[], openedSurah:null, quranEdition:'en.sahih', bookmarks:[], lastRead:null,
-  tasbih:0, qiblaBearing:null, qiblaDistance:null, deviceHeading:0,
+  tasbih:0, qiblaBearing:null, qiblaDistance:null, deviceHeading:0, manualHeading:0, compassMode:'fixed', compassActive:false, lastHeadingAt:0,
   tracker:{}, notified:{}, deferredInstall:null, audio:null, locationUpdatedAt:null, locationSampleAt:null, locationStatus:'unknown', autoLocation:true, lastLocationRefresh:0,
   points:0, pointLog:{}, engagementDays:{}, storyProgress:{}, eventReminders:{}, quranGoal:10, quranDaily:{}, quranBooksRead:{},
-  subscription:{status:'free',plan:null}, communityName:'', communityPosts:[], communityPostTimes:[], reviewSessions:0, reviewFirstSeenAt:null, reviewDismissed:false, reviewLaterUntil:0, reviewCompleted:false
+  subscription:{status:'free',plan:null}, communityName:'', communityPosts:[], communityPostTimes:[]
 };
 
 function toast(msg){ const el=$('#toast'); el.textContent=msg; el.classList.add('show'); clearTimeout(toast.t); toast.t=setTimeout(()=>el.classList.remove('show'),2800); }
@@ -192,7 +192,7 @@ function persist(){
     notifications:state.notifications,reminderOffset:state.reminderOffset,notificationPrayers:state.notificationPrayers,
     adhanEnabled:state.adhanEnabled,adhanAudioUrl:state.adhanAudioUrl,autoLocation:state.autoLocation,
     tasbih:state.tasbih,quranEdition:state.quranEdition,bookmarks:state.bookmarks,lastRead:state.lastRead,
-    tracker:state.tracker,fasting:state.fasting,points:state.points,pointLog:state.pointLog,engagementDays:state.engagementDays,storyProgress:state.storyProgress,eventReminders:state.eventReminders,quranGoal:state.quranGoal,quranDaily:state.quranDaily,quranBooksRead:state.quranBooksRead,subscription:state.subscription,communityName:state.communityName,communityPosts:state.communityPosts,communityPostTimes:state.communityPostTimes,reviewSessions:state.reviewSessions,reviewFirstSeenAt:state.reviewFirstSeenAt,reviewDismissed:state.reviewDismissed,reviewLaterUntil:state.reviewLaterUntil,reviewCompleted:state.reviewCompleted,locationUpdatedAt:state.locationUpdatedAt,locationSampleAt:state.locationSampleAt,
+    tracker:state.tracker,fasting:state.fasting,points:state.points,pointLog:state.pointLog,engagementDays:state.engagementDays,storyProgress:state.storyProgress,eventReminders:state.eventReminders,quranGoal:state.quranGoal,quranDaily:state.quranDaily,quranBooksRead:state.quranBooksRead,subscription:state.subscription,communityName:state.communityName,communityPosts:state.communityPosts,communityPostTimes:state.communityPostTimes,locationUpdatedAt:state.locationUpdatedAt,locationSampleAt:state.locationSampleAt,
     lastLocation:state.location && {latitude:state.lat,longitude:state.lon,city:state.location.city,locality:state.location.locality,region:state.location.region,country:state.location.country,postcode:state.location.postcode,accuracy:state.location.accuracy,timeZone:state.timezone}
   };
   try{ localStorage.setItem('noor-settings',JSON.stringify(payload)); }
@@ -204,7 +204,7 @@ function restore(){
     const s=JSON.parse(raw); Object.assign(state,s);
     state.notificationPrayers={Fajr:true,Dhuhr:true,Asr:true,Maghrib:true,Isha:true,...(s.notificationPrayers||{})};
     state.autoLocation=s.autoLocation!==false; state.adhanEnabled=s.adhanEnabled!==false; state.adhanAudioUrl=s.adhanAudioUrl || DEFAULT_ADHAN_URL;
-    state.fasting=s.fasting||{}; state.points=Number(s.points||0); state.pointLog=s.pointLog||{}; state.engagementDays=s.engagementDays||{}; state.storyProgress=s.storyProgress||{}; state.eventReminders=s.eventReminders||{}; state.quranGoal=Number(s.quranGoal||10); state.quranDaily=s.quranDaily||{}; state.quranBooksRead=s.quranBooksRead||{}; state.subscription=s.subscription||{status:'free',plan:null}; state.communityName=s.communityName||''; state.communityPosts=Array.isArray(s.communityPosts)?s.communityPosts:[]; state.communityPostTimes=Array.isArray(s.communityPostTimes)?s.communityPostTimes:[]; state.reviewSessions=Number(s.reviewSessions||0); state.reviewFirstSeenAt=s.reviewFirstSeenAt||null; state.reviewDismissed=!!s.reviewDismissed; state.reviewLaterUntil=Number(s.reviewLaterUntil||0); state.reviewCompleted=!!s.reviewCompleted;
+    state.fasting=s.fasting||{}; state.points=Number(s.points||0); state.pointLog=s.pointLog||{}; state.engagementDays=s.engagementDays||{}; state.storyProgress=s.storyProgress||{}; state.eventReminders=s.eventReminders||{}; state.quranGoal=Number(s.quranGoal||10); state.quranDaily=s.quranDaily||{}; state.quranBooksRead=s.quranBooksRead||{}; state.subscription=s.subscription||{status:'free',plan:null}; state.communityName=s.communityName||''; state.communityPosts=Array.isArray(s.communityPosts)?s.communityPosts:[]; state.communityPostTimes=Array.isArray(s.communityPostTimes)?s.communityPostTimes:[];
     if(s.lastLocation?.latitude!=null && s.lastLocation?.longitude!=null){
       state.lat=Number(s.lastLocation.latitude); state.lon=Number(s.lastLocation.longitude);
       state.location={...s.lastLocation}; state.timezone=s.lastLocation.timeZone||null;
@@ -243,7 +243,7 @@ function showView(view){
   $('#pageTitle').textContent=titles[view]||'Noor';
   $('#todayLabel').textContent=displayDate();
   if(view==='quran') initQuran();
-  if(view==='qibla') updateQiblaUI();
+  if(view==='qibla'){ updateQiblaUI(); updateCompassStatus(); }
   if(view==='home') refreshTodayUI();
 }
 
@@ -420,6 +420,22 @@ function calculateQibla(){
   const dphi=toRad(KAABA.lat-state.lat),dl2=toRad(KAABA.lon-state.lon); const a=Math.sin(dphi/2)**2+Math.cos(phi1)*Math.cos(phi2)*Math.sin(dl2/2)**2;
   state.qiblaDistance=6371*2*Math.atan2(Math.sqrt(a),Math.sqrt(1-a)); updateQiblaUI();
 }
+function activeHeading(){
+  if(state.compassMode==='live' && state.compassActive) return Number(state.deviceHeading||0);
+  return Number(state.manualHeading||0);
+}
+function updateCompassStatus(){
+  const pill=$('#compassModePill'), status=$('#compassStatus'), help=$('#compassHelp');
+  if(pill) pill.textContent = state.compassActive ? 'LIVE PHONE COMPASS' : (state.view==='qibla' ? 'INTERACTIVE DIAL' : 'FIXED BEARING');
+  if(status){
+    if(state.compassActive && state.lastHeadingAt) status.textContent=`Live • ${Math.round(state.deviceHeading||0)}° heading`;
+    else if(state.lat!=null) status.textContent=`Ready • ${Math.round(state.manualHeading||0)}° preview heading`;
+    else status.textContent='Waiting for location';
+  }
+  if(help){
+    help.textContent = state.compassActive ? 'Live compass is active. Hold the phone flat and turn slowly until the Qibla marker aligns with your direction.' : 'Desktop/tablet preview: drag around the dial to simulate turning. On a supported phone, enable the live compass for real heading movement.';
+  }
+}
 function updateQiblaUI(){
   if(state.qiblaBearing==null){
     $('#qiblaDegree').textContent='—°';
@@ -427,6 +443,7 @@ function updateQiblaUI(){
     $('#qiblaBearingText').textContent='—';
     $('#qiblaDistanceText').textContent='—';
     $('#qiblaCoords').textContent='—';
+    updateCompassStatus();
     return;
   }
   $('#qiblaDegree').textContent=`${Math.round(state.qiblaBearing)}°`;
@@ -435,14 +452,20 @@ function updateQiblaUI(){
   $('#qiblaCoords').textContent=`${state.lat.toFixed(5)}, ${state.lon.toFixed(5)}`;
   const place=state.location?.city || state.location?.locality || 'your location';
   $('#qiblaSub').textContent=`Qibla is ${Math.round(state.qiblaBearing)}° clockwise from North • ${place}`;
-  const relative=((state.qiblaBearing-(state.deviceHeading||0))+360)%360;
+  const relative=((state.qiblaBearing-activeHeading())+360)%360;
   $('#needle').style.transform=`rotate(${relative}deg)`;
   $('#qiblaQuick').textContent=`${Math.round(state.qiblaBearing)}° from North`;
-  $('#compass').setAttribute('aria-label',`Qibla direction ${Math.round(state.qiblaBearing)} degrees from north`);
+  $('#compass').setAttribute('aria-label',`Qibla direction ${Math.round(state.qiblaBearing)} degrees from north. Current heading ${Math.round(activeHeading())} degrees.`);
+  updateCompassStatus();
 }
 async function calibrateCompass(){
+  if(!window.isSecureContext){
+    toast('Live compass needs a secure connection (HTTPS). Your fixed Qibla bearing still works.');
+    return;
+  }
   if(!('DeviceOrientationEvent' in window)){
-    toast('This device or browser has no compass sensor. The Qibla bearing is still correct; use the degree shown on the dial.');
+    toast('This device has no browser compass sensor. The Qibla bearing is still correct; use the interactive dial.');
+    updateCompassStatus();
     return;
   }
   try{
@@ -450,27 +473,51 @@ async function calibrateCompass(){
       const p=await DeviceOrientationEvent.requestPermission();
       if(p!=='granted') throw new Error('denied');
     }
+    state.compassActive=true; state.compassMode='live'; state.lastHeadingAt=Date.now();
     window.removeEventListener('deviceorientation',onOrientation,true);
     window.removeEventListener('deviceorientationabsolute',onOrientation,true);
-    window.addEventListener('deviceorientation',onOrientation,true);
     window.addEventListener('deviceorientationabsolute',onOrientation,true);
-    toast('Phone compass enabled. Hold the phone flat and rotate slowly.');
+    window.addEventListener('deviceorientation',onOrientation,true);
+    updateCompassStatus();
+    toast('Live compass enabled. Hold the phone flat and rotate slowly.');
+    setTimeout(()=>{ if(Date.now()-state.lastHeadingAt>2500){ state.compassActive=false; state.compassMode='fixed'; updateCompassStatus(); toast('No compass readings arrived. Your device/browser may not expose a live heading; the fixed Qibla bearing remains correct.'); }},2800);
   }catch{
-    toast('Compass permission was not granted. On iPhone, tap this button from Safari and allow Motion & Orientation access.');
+    state.compassActive=false; state.compassMode='fixed';
+    updateCompassStatus();
+    toast('Compass permission was not granted. On iPhone/iPad, allow Motion & Orientation access in the browser/site settings.');
   }
 }
+function normaliseHeading(h){ return ((Number(h)||0)+360)%360; }
 function onOrientation(e){
   let heading=null;
   if(typeof e.webkitCompassHeading==='number' && Number.isFinite(e.webkitCompassHeading)){
     heading=e.webkitCompassHeading;
   }else if(typeof e.alpha==='number' && Number.isFinite(e.alpha)){
-    const screenAngle=Number(window.screen?.orientation?.angle||0);
+    // Absolute deviceorientation provides a North-referenced alpha on supported Android browsers.
+    // Screen angle is folded in so landscape rotation behaves naturally.
+    const screenAngle=Number(window.screen?.orientation?.angle||window.orientation||0);
     heading=(360-e.alpha+screenAngle)%360;
   }
   if(typeof heading==='number' && Number.isFinite(heading)){
-    state.deviceHeading=(heading+360)%360;
+    state.deviceHeading=normaliseHeading(heading);
+    state.compassActive=true; state.compassMode='live'; state.lastHeadingAt=Date.now();
     updateQiblaUI();
   }
+}
+function setManualCompassFromPoint(clientX,clientY){
+  const c=$('#compass'); if(!c||state.compassActive)return;
+  const r=c.getBoundingClientRect(), cx=r.left+r.width/2, cy=r.top+r.height/2;
+  const angle=(Math.atan2(clientX-cx, cy-clientY)*180/Math.PI+360)%360;
+  state.manualHeading=angle; state.compassMode='manual'; updateQiblaUI();
+}
+function bindCompassDrag(){
+  const c=$('#compass'); if(!c)return;
+  let dragging=false;
+  c.addEventListener('pointerdown',e=>{if(state.compassActive)return;dragging=true;c.setPointerCapture?.(e.pointerId);setManualCompassFromPoint(e.clientX,e.clientY);});
+  c.addEventListener('pointermove',e=>{if(!dragging||state.compassActive)return;setManualCompassFromPoint(e.clientX,e.clientY);});
+  c.addEventListener('pointerup',()=>dragging=false);
+  c.addEventListener('pointercancel',()=>dragging=false);
+  $('#resetCompassBtn')?.addEventListener('click',()=>{state.compassActive=false;state.compassMode='fixed';state.manualHeading=0;state.deviceHeading=0;updateQiblaUI();toast('Direction reset to North.');});
 }
 
 async function initQuran(){
@@ -496,7 +543,7 @@ async function openSurah(num,scrollAyah=1){
     const d=await r.json(); const arabic=d.data?.find(x=>x.edition?.identifier==='quran-uthmani'); const trans=d.data?.find(x=>x.edition?.identifier===edition); const audio=d.data?.find(x=>x.edition?.identifier==='ar.alafasy'); const meta=state.quranChapters.find(x=>x.number===num);
     const firstAudio=audio?.ayahs?.[0]?.audio||'';
     const saved=state.lastRead?.surah===num?state.lastRead.ayah:scrollAyah;
-    $('#surahReader').innerHTML=`<div class="reader-head"><div><button class="text-btn" id="backToSurahs">← All surahs</button><h3>${escapeHtml(meta?.englishName||'Surah')} <span class="surah-ar" translate="no">${escapeHtml(meta?.name||'')}</span></h3><div class="reader-meta">${escapeHtml(meta?.englishNameTranslation||'')} • ${meta?.revelationType||''} • ${meta?.numberOfAyahs||''} verses</div></div><div class="reader-actions"><button class="secondary-btn" id="playSurah" ${firstAudio?'':'disabled'}>▶ Play</button></div></div><div class="reader-tools"><button class="text-btn" id="markLastRead">Mark last read</button><span class="muted-small">Ayah ${saved||1}</span></div><div class="reader-list">${(arabic?.ayahs||[]).map((a,i)=>{const n=a.numberInSurah||i+1;const key=`${num}:${n}`;const bm=state.bookmarks.includes(key);const au=audio?.ayahs?.[i]?.audio||'';return `<article class="ayah" id="ayah-${n}" data-ayah="${n}"><div class="ayah-top"><span class="ayah-num">${n}</span><div><button class="mini-action bookmark ${bm?'saved':''}" data-bookmark="${key}">${bm?'★':'☆'}</button><button class="mini-action" data-last="${n}">↗</button></div></div><div class="ayah-arabic" translate="no">${escapeHtml(a.text)}</div><div class="ayah-trans">${escapeHtml(trans?.ayahs?.[i]?.text||'')}</div>${au?`<button class="audio-btn" data-audio="${au}">🔊 Listen</button>`:''}</article>`;}).join('')}</div>`;
+    $('#surahReader').innerHTML=`<div class="reader-head"><div><button class="text-btn" id="backToSurahs">← All surahs</button><h3>${escapeHtml(meta?.englishName||'Surah')} <span class="surah-ar" translate="no">${escapeHtml(meta?.name||'')}</span></h3><div class="reader-meta">${escapeHtml(meta?.englishNameTranslation||'')} • ${meta?.revelationType||''} • ${meta?.numberOfAyahs||''} verses</div></div><div class="reader-actions"><button class="secondary-btn" id="playSurah" ${firstAudio?'':'disabled'}>▶ Play</button></div></div><div class="reader-tools"><button class="text-btn" id="markLastRead">Mark last read</button><span class="muted-small">Ayah ${saved||1}</span></div><div class="reader-list">${(arabic?.ayahs||[]).map((a,i)=>{const n=a.numberInSurah||i+1;const key=`${num}:${n}`;const bm=state.bookmarks.includes(key);const au=audio?.ayahs?.[i]?.audio||'';return `<article class="ayah" id="ayah-${n}" data-ayah="${n}"><div class="ayah-top"><span class="ayah-num">${n}</span><div><button class="mini-action bookmark ${bm?'saved':''}" data-bookmark="${key}">${bm?'★':'☆'}</button><button class="mini-action" data-last="${n}">↗</button></div></div><div class="ayah-arabic" translate="no">${a.text}</div><div class="ayah-trans">${escapeHtml(trans?.ayahs?.[i]?.text||'')}</div>${au?`<button class="audio-btn" data-audio="${au}">🔊 Listen</button>`:''}</article>`;}).join('')}</div>`;
     $('#backToSurahs').addEventListener('click',()=>renderSurahs($('#quranSearch').value||''));
     $('#editionSelect').value=edition;
     $('#playSurah').addEventListener('click',()=>playSurahAudio(audio?.ayahs||[]));
@@ -565,35 +612,6 @@ function updateQuickCards(){
   $('#tasbihQuick').textContent=`${state.tasbih} counted`; $('#quranProgressText').textContent=state.lastRead?`Surah ${state.lastRead.surah}, ayah ${state.lastRead.ayah}`:'Start a reading plan';
 }
 
-function recordAppSession(){
-  try{
-    const sessionKey='noor-session-counted-v8';
-    if(sessionStorage.getItem(sessionKey)) return;
-    sessionStorage.setItem(sessionKey,'1');
-  }catch{}
-  state.reviewSessions=Number(state.reviewSessions||0)+1;
-  if(!state.reviewFirstSeenAt) state.reviewFirstSeenAt=new Date().toISOString();
-  persist();
-}
-function reviewEligible(){
-  if(state.reviewDismissed||state.reviewCompleted) return false;
-  if(Date.now()<Number(state.reviewLaterUntil||0)) return false;
-  const age=state.reviewFirstSeenAt?Date.now()-new Date(state.reviewFirstSeenAt).getTime():0;
-  const meaningfulUse=(Number(state.points||0)>=20)||Object.keys(state.tracker||{}).length>0||!!state.lastRead;
-  return Number(state.reviewSessions||0)>=3 && age>=3*86400000 && meaningfulUse;
-}
-function renderReviewCard(){
-  const wrap=$('#reviewCard'); if(!wrap) return;
-  if(!reviewEligible()){wrap.classList.add('hidden');return;}
-  const configured=!!window.NOOR_CONFIG?.review?.url;
-  wrap.classList.remove('hidden');
-  wrap.innerHTML=`<div><span class="eyebrow">A QUICK FAVOUR</span><strong>Enjoying Noor?</strong><p>A short review helps people discover the app. You can also send private feedback instead.</p></div><div class="review-actions">${configured?'<button class="primary-btn" id="reviewNowBtn">Leave a review</button>':'<button class="primary-btn" id="reviewNowBtn">Review link coming soon</button>'}<button class="secondary-btn" id="reviewFeedbackBtn">Send feedback</button><button class="text-btn" id="reviewLaterBtn">Not now</button><button class="text-btn" id="reviewDismissBtn">Don't ask again</button></div>`;
-  $('#reviewNowBtn')?.addEventListener('click',()=>{const u=window.NOOR_CONFIG?.review?.url;if(!u){toast('Set your App Store / Google Play review URL in community-config.js.');return;}state.reviewCompleted=true;persist();window.open(u,'_blank','noopener,noreferrer');wrap.classList.add('hidden');});
-  $('#reviewFeedbackBtn')?.addEventListener('click',()=>{const e=window.NOOR_CONFIG?.review?.feedbackEmail;if(e){window.location.href=`mailto:${e}?subject=Noor%20feedback`;}else toast('Add a public feedback email in community-config.js.');});
-  $('#reviewLaterBtn')?.addEventListener('click',()=>{state.reviewLaterUntil=Date.now()+14*86400000;persist();wrap.classList.add('hidden');});
-  $('#reviewDismissBtn')?.addEventListener('click',()=>{state.reviewDismissed=true;persist();wrap.classList.add('hidden');});
-}
-
 function subscriptionConfigured(){ return !!(window.NOOR_CONFIG?.stripe?.monthlyUrl || window.NOOR_CONFIG?.stripe?.yearlyUrl); }
 function premiumActive(){ return state.subscription?.status==='active' || state.subscription?.status==='trial'; }
 function openPremium(){
@@ -637,8 +655,7 @@ function communityRulesHtml(){
   return `<div class="community-rules"><strong>Community rules</strong><ol><li>Be respectful. No harassment, sectarian abuse or personal attacks.</li><li>Do not present an opinion, AI answer or unverified post as a fatwa.</li><li>Quote or link your source when making a religious claim.</li><li>No doxxing, private contact details, fundraising scams, sales or spam.</li><li>No private DMs are offered by Noor in the first community release.</li><li>Report content that breaks the rules. Moderators may remove posts.</li></ol></div>`;
 }
 function filteredCommunityPosts(topic='All') {
-  const online=!!communityBackend();
-  const local=online?[...(state.communityPosts||[])]:[...COMMUNITY_SAMPLE_POSTS,...(state.communityPosts||[])];
+  const local=[...COMMUNITY_SAMPLE_POSTS,...(state.communityPosts||[])];
   return topic==='All'?local:local.filter(x=>x.topic===topic);
 }
 function renderCommunity(topic='All'){
@@ -655,7 +672,7 @@ function renderCommunity(topic='All'){
 async function reportCommunityPost(id){
   const client=communityBackend();
   if(!client){toast('Connect the community backend to submit reports.');return;}
-  try{ const auth=await ensureCommunityAuth(); if(!auth)throw new Error(); const {data:userData}=await auth.auth.getUser(); const reporterId=userData?.user?.id; if(!reporterId) throw new Error('no reporter'); const {error}=await auth.from('community_reports').insert({post_id:id,reporter_user_id:reporterId,reason:'user_report'}); if(error)throw error; toast('Report submitted.'); }catch{toast('Report could not be submitted.');}
+  try{ const auth=await ensureCommunityAuth(); if(!auth)throw new Error(); const {error}=await auth.from('community_reports').insert({post_id:id,reason:'user_report'}); if(error)throw error; toast('Report submitted.'); }catch{toast('Report could not be submitted.');}
 }
 async function submitCommunityPost(){
   const name=($('#communityName')?.value||'').trim().slice(0,30)||'Anonymous';
@@ -688,7 +705,7 @@ function initCommunity(){
 async function openTool(tool){
   showView('tools'); const panel=$('#toolPanel'); panel.classList.remove('hidden');
   if(tool==='tasbih') panel.innerHTML=`<div class="tasbih"><div class="eyebrow">DHIKR</div><h3>Tasbih Counter</h3><div class="counter" id="counter">${state.tasbih}</div><div class="tasbih-presets"><button class="secondary-btn tasbih-preset" data-n="33">33</button><button class="secondary-btn tasbih-preset" data-n="99">99</button><button class="secondary-btn tasbih-preset" data-n="100">100</button></div><button class="round-btn" id="countBtn">Tap to count</button><div class="row-actions"><button class="secondary-btn" id="resetCount">Reset</button><button class="secondary-btn" id="saveCount">Save</button></div></div>`;
-  if(tool==='duas') panel.innerHTML=`<div><div class="eyebrow">DUA</div><h3>Daily Duas</h3><div class="duas-list">${DUAS.map((d,i)=>`<article class="dua"><div class="dua-head"><strong>${i+1}. ${escapeHtml(d.title)}</strong><button class="mini-action" data-copy-dua="${i}">Copy</button></div><p class="dua-arabic" dir="rtl" translate="no">${d.arabic}</p><p>${escapeHtml(d.english)}</p><p class="source-note">Source: ${escapeHtml(d.source)} · <a href="${d.url}" target="_blank" rel="noopener noreferrer">View source ↗</a></p></article>`).join('')}</div><p class="source-note">Religious content in this module should still be checked against the sources and scholarly practice your community follows before a commercial launch.</p></div>`;
+  if(tool==='duas') panel.innerHTML=`<div><div class="eyebrow">DUA</div><h3>Daily Duas</h3><div class="duas-list">${DUAS.map((d,i)=>`<article class="dua"><div class="dua-head"><strong>${i+1}. ${escapeHtml(d.title)}</strong><button class="mini-action" data-copy-dua="${i}">Copy</button></div><p class="dua-arabic" dir="rtl" translate="no">${d.arabic}</p><p>${escapeHtml(d.english)}</p></article>`).join('')}</div><p class="source-note">Religious content in this module should still be checked against the sources and scholarly practice your community follows before a commercial launch.</p></div>`;
   if(tool==='names') panel.innerHTML='<div><div class="eyebrow">ASMA UL HUSNA</div><h3>99 Names of Allah</h3><div id="namesList" class="names-grid"><div class="info-card">Loading names…</div></div></div>';
   if(tool==='hijri') panel.innerHTML=`<div><div class="eyebrow">CALENDAR</div><h3>Hijri Calendar</h3><div id="hijriPanel"><div class="info-card">Loading calendar…</div></div></div>`;
   if(tool==='zakat') panel.innerHTML=`<div><div class="eyebrow">ZAKAT</div><h3>Zakat estimator</h3><p class="tool-copy">Enter your net zakatable assets and the nisab threshold you follow. This is an estimator, not a fiqh ruling.</p><div class="calc-grid"><label>Cash / savings (£)<input id="zCash" type="number" min="0" step="0.01" value="0"></label><label>Gold value (£)<input id="zGold" type="number" min="0" step="0.01" value="0"></label><label>Silver value (£)<input id="zSilver" type="number" min="0" step="0.01" value="0"></label><label>Other zakatable assets (£)<input id="zOther" type="number" min="0" step="0.01" value="0"></label><label>Short-term eligible liabilities (£)<input id="zLiab" type="number" min="0" step="0.01" value="0"></label><label>Nisab threshold (£)<input id="zNisab" type="number" min="0" step="0.01" value="0"></label></div><button class="primary-btn" id="calcZakat">Calculate</button><div id="zakatResult" class="calc-result"></div><p class="source-note">Zakat rules differ by asset type, nisab basis and scholarly methodology. Confirm your calculation with a qualified scholar or trusted calculator for your circumstances.</p></div>`;
@@ -706,7 +723,7 @@ async function openTool(tool){
   $('#resetCount')?.addEventListener('click',()=>{state.tasbih=0;$('#counter').textContent=0;persist();updateQuickCards();});
   $('#saveCount')?.addEventListener('click',()=>{persist();toast('Tasbih count saved.');});
   $$('.tasbih-preset').forEach(b=>b.addEventListener('click',()=>{state.tasbih=Number(b.dataset.n);$('#counter').textContent=state.tasbih;persist();updateQuickCards();}));
-  $$('[data-copy-dua]').forEach(b=>b.addEventListener('click',async()=>{const d=DUAS[Number(b.dataset.copyDua)];try{await navigator.clipboard.writeText(`${d.title}\n${d.arabic}\n${d.english}\nSource: ${d.source} ${d.url}`);toast('Dua copied.');}catch{toast('Copy is not available in this browser.');}}));
+  $$('[data-copy-dua]').forEach(b=>b.addEventListener('click',async()=>{const d=DUAS[Number(b.dataset.copyDua)];try{await navigator.clipboard.writeText(`${d.title}\n${d.arabic}\n${d.english}`);toast('Dua copied.');}catch{toast('Copy is not available in this browser.');}}));
   $('#calcZakat')?.addEventListener('click',()=>{const assets=['zCash','zGold','zSilver','zOther'].reduce((s,id)=>s+Number($('#'+id).value||0),0);const liab=Number($('#zLiab').value||0);const nisab=Number($('#zNisab').value||0);const net=Math.max(0,assets-liab);const due=nisab>0&&net>=nisab?net*0.025:0;$('#zakatResult').textContent=nisab>0?(due?`Estimated zakat: £${due.toFixed(2)} on £${net.toFixed(2)} of net assets.`:`No zakat estimate due because net assets are below the entered nisab.`):`Net zakatable assets: £${net.toFixed(2)}. Enter the nisab threshold you follow to complete the estimate.`;});
   $('#mapsGoogle')?.addEventListener('click',()=>{if(state.lat==null){toast('Enable precise location first.');return;}window.open(`https://www.google.com/maps/search/mosque/@${state.lat},${state.lon},14z`,'_blank','noopener,noreferrer');});
   $('#mapsOsm')?.addEventListener('click',()=>{if(state.lat==null){toast('Enable precise location first.');return;}window.open(`https://www.openstreetmap.org/?mlat=${state.lat}&mlon=${state.lon}#map=14/${state.lat}/${state.lon}`,'_blank','noopener,noreferrer');});
@@ -848,7 +865,6 @@ function checkPrayerReminder(){
 
 function bind(){
   restore();
-  recordAppSession();
   METHODS.forEach(([id,name])=>{const o=document.createElement('option');o.value=id;o.textContent=name;$('#methodSelect').appendChild(o);});
   $('#methodSelect').value=String(state.method); $('#schoolSelect').value=String(state.school); $('#highLatSelect').value=state.highLat;
   $$('.nav-item').forEach(b=>b.addEventListener('click',()=>b.dataset.view==='community'?openCommunityView():showView(b.dataset.view)));
@@ -859,8 +875,6 @@ function bind(){
   $('#settingsBtn').addEventListener('click',openSettings); $('#closeSettings').addEventListener('click',closeSettings); $('#closePremium')?.addEventListener('click',closePremium); $('#saveSettings').addEventListener('click',saveSettings); $('#openSettingsFromPrayer').addEventListener('click',openSettings);
   $('#requestNotificationsBtn')?.addEventListener('click',requestNotificationPermission); $('#testNotificationBtn')?.addEventListener('click',testPrayerNotification);
   $('#testAdhanBtn')?.addEventListener('click',async()=>{ if(!state.adhanAudioUrl) state.adhanAudioUrl=DEFAULT_ADHAN_URL; try{ const a=new Audio(state.adhanAudioUrl); a.volume=0.92; a.preload='auto'; await a.play(); toast('Adhan playback started.'); }catch{ toast('Adhan playback was blocked; tap the button again or check the audio link.'); }});
-  $('#settingsReviewBtn')?.addEventListener('click',()=>{const u=window.NOOR_CONFIG?.review?.url;if(u)window.open(u,'_blank','noopener,noreferrer');else toast('Set your App Store / Google Play review URL in community-config.js.');});
-  $('#settingsFeedbackBtn')?.addEventListener('click',()=>{const e=window.NOOR_CONFIG?.review?.feedbackEmail;if(e)window.location.href=`mailto:${e}?subject=Noor%20feedback`;else toast('Add a public feedback email in community-config.js.');});
   $('#resetSettingsBtn')?.addEventListener('click',()=>{ if(confirm('Reset local Noor settings and saved location on this device?')){ localStorage.removeItem('noor-settings'); sessionStorage.removeItem('noor-settings-session'); location.reload(); }});
   initCommunity();
   $('#communityStatus')?.addEventListener('click',loadCommunityFromBackend);
@@ -869,8 +883,8 @@ function bind(){
   $('#applyPrayerSettings').addEventListener('click',async()=>{state.method=Number($('#methodSelect').value);state.school=Number($('#schoolSelect').value);state.highLat=$('#highLatSelect').value;persist();if(state.lat!=null){await loadPrayerTimes();await loadWeekCalendar();}toast('Prayer calculation settings applied.');});
   $('#quranSearch').addEventListener('input',e=>renderSurahs(e.target.value)); $('#quranSearch').addEventListener('keydown',e=>{if(e.key==='Enter')searchQuran();}); $('#editionSelect').addEventListener('change',async()=>{state.quranEdition=$('#editionSelect').value;persist();if(state.openedSurah)await openSurah(state.openedSurah,state.lastRead?.ayah||1);});
   $('#continueQuranBtn').addEventListener('click',continueQuran); $('#bookmarksBtn').addEventListener('click',showBookmarks); $('#quranSearchWebBtn').addEventListener('click',searchQuran); $('#quranSettingsBtn').addEventListener('click',openSettings); $('#quranGoalBtn')?.addEventListener('click',()=>document.querySelector('#quranGoalCard')?.scrollIntoView({behavior:'smooth',block:'center'}));
-  $('#calibrateBtn').addEventListener('click',calibrateCompass);
-  $('#todayLabel').textContent=displayDate(); updateQuickCards(); updateJourneyQuick(); renderQuranGoal(); renderUnavailable(); startCountdown(); updateNotificationStatus(); renderReviewCard();
+  $('#calibrateBtn').addEventListener('click',calibrateCompass); bindCompassDrag();
+  $('#todayLabel').textContent=displayDate(); updateQuickCards(); updateJourneyQuick(); renderQuranGoal(); renderUnavailable(); startCountdown(); updateNotificationStatus();
   updateLocationButtons();
   if(state.lat!=null){
     renderLocationState('saved on this device');

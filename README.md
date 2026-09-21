@@ -26,13 +26,3 @@ Noor is a location-first Muslim prayer and learning PWA designed to keep the cor
 ## Core religious-content rule
 
 Qur'an Arabic is fetched from the selected source; Noor does not AI-rewrite it. Prophet Stories are explicitly labelled as summaries with Qur'an references and should not introduce unsupported dialogue or historical details. See `CONTENT-INTEGRITY.md`.
-
-
-## Final touch changes
-- Delayed, dismissible review/feedback prompt.
-- Quran Arabic output is escaped before DOM insertion.
-- Community reports now include the reporter ID required by the database policy.
-- Added server-side community posting rate limiting.
-- Dua cards show their fixed source references.
-- Tightened wording for community-dependent Islamic dates.
-- Native/www runtime is synced to the same web build.

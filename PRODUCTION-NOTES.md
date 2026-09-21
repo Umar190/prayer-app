@@ -64,3 +64,10 @@ Prophet stories are concise Quran-based summaries with references and lessons. I
 - Tools popups are placed beneath the row of the selected tool instead of jumping to the top.
 - Qibla target is a larger alignment box; the compass ring and guide turn green when aligned, with optional haptic feedback.
 - Synced native web assets with the latest web build and fixed native asset references.
+
+
+## v22 timing/settings pass
+- Default timing profile is now location-based: standard Asr + Angle-based high-latitude handling, with supported country-specific calculation methods where appropriate.
+- Legacy v21 default (Hanafi + Night Middle) is migrated to the new recommended profile.
+- Local minute correction now affects the five prayer times only, not sunrise/sunset/midnight.
+- Settings are now a full-page mobile sheet / large single-page workspace with explicit recommended vs custom timing.

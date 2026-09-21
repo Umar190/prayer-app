@@ -1,7 +1,3 @@
-## v21 visual update
-- Premium moonlit dark mode inspired by modern prayer apps, with deep navy/teal surfaces, warm gold accents, stronger contrast, and consistent dark cards/forms/modals.
-- One-tap theme button remains available in the top bar; dark mode is persisted locally.
-
 # Noor — Prayer & Quran (Production v7)
 
 Noor is a location-first Muslim prayer and learning PWA designed to keep the core worship experience free and ad-free, while offering optional Plus features for deeper study and convenience.

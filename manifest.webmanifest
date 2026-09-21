@@ -6,14 +6,37 @@
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
-  "background_color": "#f6f7f3",
+  "background_color": "#08131a",
   "theme_color": "#0b5b4e",
   "orientation": "portrait-primary",
-  "categories": ["religion", "lifestyle", "education"],
-  "icons": [{"src":"icon.svg","sizes":"any","type":"image/svg+xml","purpose":"any maskable"}],
+  "categories": [
+    "religion",
+    "lifestyle",
+    "education"
+  ],
+  "icons": [
+    {
+      "src": "icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
   "shortcuts": [
-    {"name":"Prayer Times","short_name":"Prayer","url":"./#prayer"},
-    {"name":"Quran","short_name":"Quran","url":"./#quran"},
-    {"name":"Qibla","short_name":"Qibla","url":"./#qibla"}
+    {
+      "name": "Prayer Times",
+      "short_name": "Prayer",
+      "url": "./#prayer"
+    },
+    {
+      "name": "Quran",
+      "short_name": "Quran",
+      "url": "./#quran"
+    },
+    {
+      "name": "Qibla",
+      "short_name": "Qibla",
+      "url": "./#qibla"
+    }
   ]
 }

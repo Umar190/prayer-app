@@ -1,9 +1,9 @@
-const CACHE_NAME = "noor-v20-20260921";
+const CACHE_NAME = "noor-v21-20260921";
 const APP_SHELL = [
   "./",
   "./index.html",
-  "./styles-v20.css?v=20",
-  "./app-v20.js?v=20",
+  "./styles-v21.css?v=21",
+  "./app-v21.js?v=21",
   "./manifest.webmanifest?v=20",
   "./icon.svg"
 ];

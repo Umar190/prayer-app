@@ -1,7 +1,15 @@
-# Noor prayer timing validation — 21 September 2026
+# Noor timing validation — v28
 
-Noor v24 default: **Moonsighting Committee Worldwide (MCW), Hanafi Asr**.
+## Default profile
 
-A current London MCW timetable (Muwaqqit) lists for 21 Sep 2026: Fajr 05:11, Sunrise 06:45, Dhuhr 12:59, Asr 16:12 (standard), Maghrib 19:04, Isha 20:18. Hanafi Asr is expected to be materially later; an independent current London MWL reference shows Hanafi Asr at about 17:03, and East London mosque timetables publish Asr at 17:03.
+Noor v28 defaults to **Moonsighting Committee Worldwide (MCW)** with **Standard Asr (Shafi'i / Maliki / Hanbali)**. **Hanafi** remains available as a selectable Asr school.
 
-Other London sources differ by several minutes, especially Fajr/Isha, because calculation conventions and local mosque adjustments differ. Noor therefore exposes the method, Hanafi Asr choice, high-latitude rule and local minute correction rather than claiming that a single set of times is universally exact.
+For UK locations, Noor uses the MCW method with its general shafaq profile and does **not** force a one-seventh high-latitude shortcut at London/Redbridge latitude. Moonsighting.com states that its latitude/season Fajr-Isha functions work through about 55°N and that the one-seventh approximation is used above 55°.
+
+## Cross-checks reviewed on 21 Sep 2026
+
+- Muslim Pro London: about **05:12 Fajr, 12:59 Dhuhr, 16:13 Asr, 19:04 Maghrib, 20:20 Isha**. Muslim Pro states its default Asr calculation is Standard and lets users switch to Hanafi.
+- IslamicFinder City of London: **04:53 Fajr, 12:55 Dhuhr, 16:13 Asr, 19:03 Maghrib, 20:48 Isha** with MWL and Standard Asr.
+- Moonsighting.com explains that its own Fajr/Isha approach is observation/latitude/season based and that Standard Asr uses the one-shadow-length position while Hanafi uses the two-shadow-length position.
+
+These services can differ because of location, calculation convention, rounding and local mosque adjustments. Noor therefore exposes the calculation method and Asr school rather than claiming that one provider is universally exact.

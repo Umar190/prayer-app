@@ -133,7 +133,7 @@ const PREMIUM_FEATURES = [
   {title:'Premium themes',desc:'Additional seasonal and Fajr-inspired visual themes.',state:'planned'}
 ];
 const PREMIUM_COMPARISON = [
-  ['Prayer times & MCW/Hanafi settings', '✓', '✓'],
+  ['Prayer times & MCW / Standard settings', '✓', '✓'],
   ['Qibla', '✓', '✓'],
   ['Full Quran reading', '✓', '✓'],
   ['English + Urdu translations', '✓', '✓'],
@@ -164,7 +164,7 @@ const COMMUNITY_SAMPLE_POSTS = [
 
 const state = {
   view:'home', lat:null, lon:null, location:null, timezone:null,
-  prayer:null, hijri:null, calendar:[], method:15, school:1, highLat:'OneSeventh', timingPreset:'recommended',
+  prayer:null, hijri:null, calendar:[], method:15, school:0, highLat:'AngleBased', timingPreset:'recommended',
   adjustment:0, use12h:false, notifications:false, reminderOffset:0, notificationPrayers:{Fajr:true,Dhuhr:true,Asr:true,Maghrib:true,Isha:true}, adhanEnabled:true, adhanAudioUrl:DEFAULT_ADHAN_URL, nextPrayer:null,
   quranChapters:[], openedSurah:null, quranEdition:'both', bookmarks:[], lastRead:null,
   tasbih:0, qiblaBearing:null, qiblaDistance:null, deviceHeading:0, manualHeading:0, compassMode:'fixed', compassActive:false, lastHeadingAt:0, qiblaAligned:false,
@@ -253,8 +253,8 @@ function restore(){
     const s=JSON.parse(raw); Object.assign(state,s);
     state.timingPreset=s.timingPreset||'recommended';
     state.shafaq=s.shafaq||'general';
-    if(state.timingPreset==='recommended'){ state.method=15; state.school=1; state.highLat='OneSeventh'; }
-    if(!s.timingPreset && Number(s.method||3)===3 && Number(s.school||1)===1 && (s.highLat||'NightMiddle')==='NightMiddle'){state.method=3;state.school=0;state.highLat='AngleBased';state.timingPreset='recommended';}
+    if(state.timingPreset==='recommended'){ state.method=15; state.school=0; state.highLat='AngleBased'; state.shafaq='general'; }
+    if(!s.timingPreset && Number(s.method||15)===15){state.method=15;state.school=0;state.highLat='AngleBased';state.shafaq='general';state.timingPreset='recommended';}
     state.notificationPrayers={Fajr:true,Dhuhr:true,Asr:true,Maghrib:true,Isha:true,...(s.notificationPrayers||{})};
     state.autoLocation=s.autoLocation!==false; state.adhanEnabled=s.adhanEnabled!==false; state.adhanAudioUrl=s.adhanAudioUrl || DEFAULT_ADHAN_URL;
     state.fasting=s.fasting||{}; state.points=Number(s.points||0); state.pointLog=s.pointLog||{}; state.engagementDays=s.engagementDays||{}; state.storyProgress=s.storyProgress||{}; state.eventReminders=s.eventReminders||{}; state.quranGoal=Number(s.quranGoal||10); state.quranDaily=s.quranDaily||{}; state.quranBooksRead=s.quranBooksRead||{}; state.subscription=s.subscription||{status:'free',plan:null}; state.darkMode=!!s.darkMode; state.currency=s.currency||'GBP'; state.communityName=s.communityName||''; state.communityPosts=Array.isArray(s.communityPosts)?s.communityPosts:[]; state.communityPostTimes=Array.isArray(s.communityPostTimes)?s.communityPostTimes:[];
@@ -330,7 +330,7 @@ async function handleRoutePop(){
 }
 
 
-const PRAYER_PROFILE_FALLBACK={countryLabel:'Location-based recommendation',method:15,school:1,highLat:'OneSeventh',methodName:'Moonsighting Committee Worldwide (MCW)',schoolName:'Hanafi',highLatName:'One Seventh of the Night'};
+const PRAYER_PROFILE_FALLBACK={countryLabel:'Location-based recommendation',method:15,school:0,highLat:'AngleBased',methodName:'Moonsighting Committee Worldwide (MCW)',schoolName:'Standard (Shafi / Maliki / Hanbali)',highLatName:'Standard MCW seasonal calculation'};
 function recommendedProfileForCountry(country=''){
   return {...PRAYER_PROFILE_FALLBACK,countryLabel:country||PRAYER_PROFILE_FALLBACK.countryLabel};
 }
@@ -340,7 +340,7 @@ function timingProfileInfo(){
 }
 function applyRecommendedTimingProfile(){
   const p=recommendedProfileForCountry(state.location?.country||'');
-  state.method=p.method;state.school=1;state.highLat=p.highLat;state.shafaq='general';state.timingPreset='recommended';
+  state.method=p.method;state.school=0;state.highLat=p.highLat;state.shafaq='general';state.timingPreset='recommended';
   syncTimingControls();
   return p;
 }
@@ -350,7 +350,7 @@ function syncTimingControls(){
   const preset=$('#timingPresetSelect');if(preset)preset.value=state.timingPreset||'recommended';
   const custom=$('#customTimingFields');if(custom)custom.classList.toggle('hidden',state.timingPreset!=='custom');
   const badge=$('#timingProfileBadge');if(badge){badge.textContent=state.timingPreset==='recommended'?'RECOMMENDED':'CUSTOM';badge.classList.toggle('custom',state.timingPreset==='custom');}
-  const rec=$('#timingRecommendedNote');if(rec){rec.innerHTML=state.timingPreset==='recommended'?`<strong>${escapeHtml(info.methodName)}</strong><p>${escapeHtml(info.schoolName)} · ${escapeHtml(info.highLatName)} · ${escapeHtml(info.countryLabel||'your location')}.</p><p>Noor now defaults to the Moonsighting Committee Worldwide (MCW) method with Hanafi Asr. Fajr, Dhuhr, Maghrib and Isha follow the MCW calculation profile; Asr uses the Hanafi shadow factor. Local mosque timetables can still differ by a few minutes, so Noor keeps the calculation method and local adjustment visible.</p>`:'<strong>Custom timing</strong><p>Use this when you intentionally follow a particular school, authority or trusted local mosque timetable.</p>';}
+  const rec=$('#timingRecommendedNote');if(rec){rec.innerHTML=state.timingPreset==='recommended'?`<strong>${escapeHtml(info.methodName)}</strong><p>${escapeHtml(info.schoolName)} · ${escapeHtml(info.highLatName)} · ${escapeHtml(info.countryLabel||'your location')}.</p><p>Noor now defaults to the Moonsighting Committee Worldwide (MCW) method with Standard Asr (Shafi'i, Maliki, Hanbali). Hanafi remains available as a separate option. MCW's published UK guidance uses seasonal/latitude-based Fajr and Isha research and does not apply the one-seventh shortcut at London latitude. Local mosque timetables can still differ by a few minutes, so Noor keeps the calculation method and local adjustment visible.</p>`:'<strong>Custom timing</strong><p>Use this when you intentionally follow a particular school, authority or trusted local mosque timetable.</p>';}
   const label=$('#timingProfileLabel');if(label)label.textContent=state.timingPreset==='recommended'?'Recommended for your location':'Custom calculation settings';
   const sub=$('#timingProfileSub');if(sub)sub.textContent=`${info.methodName} · ${info.schoolName}`;
   const src=$('#timingLocationSource');if(src)src.textContent=state.lat!=null?`Based on ${locationLabel()||'saved coordinates'}`:'Location not set';

@@ -1,8 +1,32 @@
-const CACHE='noor-v10-mobile-fix';
-const CORE=['./','./index.html','./styles.css','./app.js','./manifest.webmanifest','./icon.svg'];
-self.addEventListener('install',e=>e.waitUntil(caches.open(CACHE).then(c=>c.addAll(CORE)).then(()=>self.skipWaiting())));
-self.addEventListener('activate',e=>e.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(k=>k!==CACHE).map(k=>caches.delete(k)))).then(()=>self.clients.claim())));
-self.addEventListener('fetch',e=>{const u=new URL(e.request.url);if(u.origin===location.origin){e.respondWith(caches.match(e.request).then(cached=>cached||fetch(e.request).then(resp=>{const copy=resp.clone();caches.open(CACHE).then(c=>c.put(e.request,copy));return resp}).catch(()=>caches.match('./index.html'))));}});
-self.addEventListener('push',event=>{let data={title:'Noor',body:'You have a new prayer reminder.',url:'./#prayer',tag:'noor-push'};try{data={...data,...(event.data?.json()||{})};}catch{}event.waitUntil(self.registration.showNotification(data.title,{body:data.body,icon:'icon.svg',badge:'icon.svg',tag:data.tag||'noor-push',renotify:true,data:{url:data.url||'./#prayer'}}));});
-self.addEventListener('notificationclick',event=>{event.notification.close();const url=event.notification?.data?.url||'./#prayer';event.waitUntil(clients.matchAll({type:'window',includeUncontrolled:true}).then(list=>{for(const c of list){if('focus' in c){c.focus();try{c.navigate(url);}catch{}return;}}return clients.openWindow(url);}));});
-self.addEventListener('message',event=>{if(event.data?.type==='NOOR_NOTIFICATION'){const {title='Noor',body='Prayer reminder',tag='noor-prayer',url='./#prayer'}=event.data;event.waitUntil(self.registration.showNotification(title,{body,icon:'icon.svg',badge:'icon.svg',tag,renotify:true,data:{url}}));}});
+const CACHE_NAME = "noor-v12-20260921";
+const APP_SHELL = [
+  "./",
+  "./index.html",
+  "./styles-v11.css?v=12",
+  "./app-v11.js?v=12",
+  "./manifest.webmanifest",
+  "./icon.svg"
+];
+self.addEventListener("install", event => {
+  event.waitUntil(caches.open(CACHE_NAME).then(c => c.addAll(APP_SHELL)).then(()=>self.skipWaiting()));
+});
+self.addEventListener("activate", event => {
+  event.waitUntil(caches.keys().then(keys => Promise.all(keys.filter(k => k !== CACHE_NAME).map(k => caches.delete(k)))).then(()=>self.clients.claim()));
+});
+self.addEventListener("fetch", event => {
+  if (event.request.method !== "GET") return;
+  const url = new URL(event.request.url);
+  if (url.origin !== location.origin) return;
+  event.respondWith(fetch(event.request).then(resp => {
+    const copy = resp.clone();
+    caches.open(CACHE_NAME).then(c => c.put(event.request, copy)).catch(()=>{});
+    return resp;
+  }).catch(()=>caches.match(event.request).then(r => r || caches.match("./index.html"))));
+});
+self.addEventListener("notificationclick", event => {
+  event.notification.close();
+  event.waitUntil(self.clients.matchAll({type:"window", includeUncontrolled:true}).then(list => {
+    for (const c of list) if ("focus" in c) return c.focus();
+    if (self.clients.openWindow) return self.clients.openWindow("./");
+  }));
+});

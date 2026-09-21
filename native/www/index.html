@@ -8,11 +8,22 @@
   <meta name="google" content="notranslate" />
   <meta name="google" content="notranslate" />
   <link rel="manifest" href="manifest.webmanifest" />
+  <script>
+    (function(){
+      try {
+        var m = window.matchMedia && window.matchMedia("(max-width: 760px)").matches;
+        document.documentElement.classList.toggle("mobile-layout", !!m);
+      } catch(e) {}
+      window.addEventListener("resize", function(){
+        try { document.documentElement.classList.toggle("mobile-layout", window.matchMedia("(max-width: 760px)").matches); } catch(e) {}
+      }, {passive:true});
+    })();
+  </script>
   <meta name="theme-color" content="#0b5b4e" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="default" />
   <link rel="icon" href="icon.svg" type="image/svg+xml" />
-  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="styles-v11.css" />
   <title>Noor — Prayer & Quran</title>
 </head>
 <body>
@@ -238,6 +249,6 @@
 
   <script src="community-config.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <script src="app.js"></script>
+  <script src="app-v11.js"></script>
 </body>
 </html>

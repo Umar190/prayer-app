@@ -1,3 +1,8 @@
+v26 notes:
+- Subscription/Noor Plus UI removed from the live app for now; the product remains free and ad-free.
+- Settings interaction hardened with delegated click handling so the full-screen mobile settings panel can still open even if an optional module fails during binding.
+- Optional element event listeners are now guarded to prevent one missing optional control from aborting the rest of the app bindings.
+
 # Noor production notes
 
 ## Web/PWA

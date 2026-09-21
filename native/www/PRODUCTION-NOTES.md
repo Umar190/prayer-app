@@ -1,3 +1,8 @@
+v26 notes:
+- Subscription/Noor Plus UI removed from the live app for now; the product remains free and ad-free.
+- Settings interaction hardened with delegated click handling so the full-screen mobile settings panel can still open even if an optional module fails during binding.
+- Optional element event listeners are now guarded to prevent one missing optional control from aborting the rest of the app bindings.
+
 # Noor production notes
 
 ## Web/PWA
@@ -82,3 +87,9 @@ Prophet stories are concise Quran-based summaries with references and lessons. I
 
 ### v23 verification
 Compared current UK-facing MCW implementations and major services. Noor defaults to MCW/standard Asr and keeps method/school/high-latitude settings explicit; exact prayer times can still vary by convention and local mosque timetable.
+
+
+## v25 fixes
+- Settings is now a full-screen, scroll-contained mobile page with a sticky header/footer, quick status chips, Escape/backdrop close, and delegated open handling.
+- Added prayer-window end times to the home prayer cards and hero countdown. For the Hanafi profile, Noor maps Fajr→Sunrise, Dhuhr→Asr, Asr→Sunset, Maghrib→Isha, and Isha→Fajr; the UI labels this as guidance, not a fatwa.
+- Added Sunset to the internal timing data without exposing it as a sixth salah.

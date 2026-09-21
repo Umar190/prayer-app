@@ -26,3 +26,9 @@ Noor is a location-first Muslim prayer and learning PWA designed to keep the cor
 ## Core religious-content rule
 
 Qur'an Arabic is fetched from the selected source; Noor does not AI-rewrite it. Prophet Stories are explicitly labelled as summaries with Qur'an references and should not introduce unsupported dialogue or historical details. See `CONTENT-INTEGRITY.md`.
+
+
+### v13 notes
+- GitHub Pages project-site base path pinned to `/prayer-app/` so asset loading works even when the URL is opened without a trailing slash.
+- Qibla arrow now carries a readable QIBLA marker.
+- Orientation permission requests magnetometer access where supported and only treats absolute orientation as a true North heading.

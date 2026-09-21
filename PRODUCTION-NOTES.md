@@ -28,3 +28,8 @@ Prophet stories are concise Quran-based summaries with references and lessons. I
 - Added more explicit messaging that real motion requires a supported device sensor; desktop users still get the exact Qibla bearing.
 - Live compass now prefers `deviceorientationabsolute` and falls back to `deviceorientation`, supports iOS `webkitCompassHeading`, applies screen orientation, and reports when sensors do not respond.
 - Service-worker cache bumped to v9.
+
+
+## v15 Zakat fix
+- Zakat estimate now recalculates live when assets, liabilities, or nisab changes.
+- UI explains that nisab changes eligibility; when assets remain above the chosen threshold, the 2.5% estimate itself remains the same.

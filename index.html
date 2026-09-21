@@ -6,8 +6,8 @@
   <meta name="theme-color" content="#0b5b4e" />
   <meta name="description" content="Noor — prayer times, Quran, Qibla, duas, dhikr, Hijri calendar, moon sighting and Islamic learning tools." />
   <meta name="google" content="notranslate" />
-  <meta name="google" content="notranslate" />
-  <link rel="manifest" href="manifest.webmanifest" />
+  <base href="/prayer-app/" />
+  <link rel="manifest" href="manifest.webmanifest?v=14" />
   <script>
     (function(){
       try {
@@ -23,7 +23,7 @@
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="default" />
   <link rel="icon" href="icon.svg" type="image/svg+xml" />
-  <link rel="stylesheet" href="styles-v11.css?v=12" />
+  <link rel="stylesheet" href="styles-v15.css?v=15" />
   <title>Noor — Prayer & Quran</title>
 </head>
 <body>
@@ -152,7 +152,7 @@
                 <div class="compass-ring"></div>
                 <div class="compass-ticks" aria-hidden="true"></div>
                 <div class="north">N</div><div class="east">E</div><div class="south">S</div><div class="west">W</div>
-                <div class="needle" id="needle"><div class="needle-tip"></div><div class="needle-tail"></div></div>
+                <div class="needle" id="needle"><div class="needle-tip"></div><div class="needle-label" id="needleLabel">QIBLA</div><div class="needle-tail"></div></div>
                 <div class="kaaba-mark"><span>✦</span></div>
                 <div class="compass-center"></div>
               </div>
@@ -187,6 +187,7 @@
 
       <section id="view-tools" class="view">
         <div class="page-intro"><div><div class="eyebrow">EVERYDAY</div><h2>Islamic Tools</h2><p>Daily dhikr, duas, Asma al-Husna, Hijri dates, Ramadan planning, zakat and nearby mosque links.</p></div></div>
+        <div id="toolPanel" class="tool-panel hidden" aria-live="polite"></div>
         <div class="tool-grid">
           <button class="tool-card" data-tool="tasbih"><span>◌</span><strong>Tasbih</strong><small>Dhikr counter with saved count</small></button>
           <button class="tool-card" data-tool="duas"><span>✦</span><strong>Daily Duas</strong><small>Morning, evening and everyday duas</small></button>
@@ -203,7 +204,6 @@
           <button class="tool-card premium-card" data-tool="premium"><span>◆</span><strong>Noor Plus</strong><small>Premium plans, trial & future exclusive tools</small></button>
           <button class="tool-card" data-tool="settings"><span>⚙</span><strong>Settings</strong><small>Location, timing and notifications</small></button>
         </div>
-        <div id="toolPanel" class="tool-panel hidden"></div>
       </section>
     </main>
   </div>
@@ -249,6 +249,6 @@
 
   <script src="community-config.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <script src="app-v11.js?v=12"></script>
+  <script src="app-v15.js?v=15"></script>
 </body>
 </html>

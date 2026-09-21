@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <meta name="theme-color" content="#0b5b4e" />
+  <meta name="description" content="Noor — prayer times, Quran, Qibla, duas, dhikr, Hijri calendar and Ramadan tools." />
+  <meta name="google" content="notranslate" />
+  <link rel="manifest" href="manifest.webmanifest" />
+  <link rel="icon" href="icon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="styles.css" />
+  <title>Noor — Prayer & Quran</title>
+</head>
+<body>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+  <div class="app-shell">
+    <aside class="sidebar" aria-label="Primary navigation">
+      <div class="brand">
+        <div class="brand-mark" aria-hidden="true">☾</div>
+        <div><div class="brand-name">Noor</div><div class="brand-sub">Prayer & Quran</div></div>
+      </div>
+      <nav class="nav-list">
+        <button class="nav-item active" data-view="home"><span>⌂</span><b>Home</b></button>
+        <button class="nav-item" data-view="prayer"><span>◷</span><b>Prayer</b></button>
+        <button class="nav-item" data-view="quran"><span>۞</span><b>Quran</b></button>
+        <button class="nav-item" data-view="qibla"><span>⌖</span><b>Qibla</b></button>
+        <button class="nav-item" data-view="tools"><span>✦</span><b>Tools</b></button>
+      </nav>
+      <div class="sidebar-location">
+        <div class="mini-label">Your location</div>
+        <strong id="sideLocation">Location needed</strong>
+        <button class="ghost-btn small" id="useLocationSide">Use precise location</button>
+      </div>
+      <div class="sidebar-foot">Location-first prayer timing with transparent settings.</div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <div>
+          <div class="eyebrow" id="todayLabel">Today</div>
+          <h1 id="pageTitle">Assalamu alaikum</h1>
+        </div>
+        <div class="top-actions">
+          <button class="install-btn hidden" id="installBtn">Install</button>
+          <button class="icon-btn" id="refreshBtn" title="Refresh data" aria-label="Refresh data">↻</button>
+          <button class="icon-btn" id="settingsBtn" title="Settings" aria-label="Settings">⚙</button>
+        </div>
+      </header>
+
+      <section id="view-home" class="view active-view">
+        <div class="hero-grid">
+          <section class="hero-card">
+            <div class="location-line"><span class="pulse-dot"></span><span id="locationName">Enable precise location for local timings</span></div>
+            <div class="hero-date" id="heroDate">—</div>
+            <div class="next-caption">NEXT PRAYER</div>
+            <div class="next-row">
+              <div><div class="next-name" id="nextPrayerName">—</div><div class="next-time" id="nextPrayerTime">--:--</div></div>
+              <div class="countdown" id="countdown">--:--:--</div>
+            </div>
+            <div class="hero-actions">
+              <button class="primary-btn" id="heroLocationBtn">Use precise location</button>
+              <button class="secondary-btn" data-view-jump="qibla">Find Qibla</button>
+            </div>
+          </section>
+          <section class="verse-card">
+            <div class="card-top"><span>Daily Ayah</span><span>QURAN</span></div>
+            <div class="arabic" id="dailyAyahArabic" translate="no">وَاذْكُر رَّبَّكَ إِذَا نَسِيتَ</div>
+            <div class="translation" id="dailyAyahTranslation">“And remember your Lord when you forget.”</div>
+            <div class="verse-ref" id="dailyAyahRef">Al-Kahf 18:24</div>
+            <button class="text-btn" data-view-jump="quran">Open Quran →</button>
+          </section>
+        </div>
+
+        <section class="section">
+          <div class="section-head"><h2>Today’s prayer times</h2><button class="text-btn" data-view-jump="prayer">Full schedule →</button></div>
+          <div id="prayerCards" class="prayer-cards"></div>
+        </section>
+
+        <section class="section">
+          <div class="section-head"><h2>Prayer tracker</h2><span class="muted-small" id="trackerDate">Today</span></div>
+          <div id="prayerTracker" class="tracker"></div>
+        </section>
+
+        <section class="section">
+          <div class="section-head"><h2>Next 7 days</h2><span class="muted-small" id="weekLocation">—</span></div>
+          <div id="weekSchedule" class="week-schedule"></div>
+        </section>
+
+        <section class="quick-grid">
+          <button class="quick-card" data-view-jump="quran"><span class="quick-icon">۞</span><div><strong>Continue Quran</strong><small id="quranProgressText">Start reading</small></div><span>→</span></button>
+          <button class="quick-card" data-view-jump="qibla"><span class="quick-icon">🧭</span><div><strong>Qibla</strong><small id="qiblaQuick">Direction from your location</small></div><span>→</span></button>
+          <button class="quick-card" data-tool="tasbih"><span class="quick-icon">◌</span><div><strong>Tasbih</strong><small id="tasbihQuick">0 counted</small></div><span>→</span></button>
+          <button class="quick-card" data-tool="duas"><span class="quick-icon">✦</span><div><strong>Daily Duas</strong><small>Morning, evening & everyday</small></div><span>→</span></button>
+        </section>
+      </section>
+
+      <section id="view-prayer" class="view">
+        <div class="page-intro"><div><div class="eyebrow">SALAH</div><h2>Prayer Times</h2><p id="prayerIntro">Times are calculated from your precise coordinates and selected calculation settings.</p></div><button class="secondary-btn" id="locatePrayerBtn">⌖ Update location</button></div>
+        <div class="settings-strip">
+          <label>Calculation method<select id="methodSelect"></select></label>
+          <label>Asr school<select id="schoolSelect"><option value="0">Shafi / Maliki / Hanbali</option><option value="1">Hanafi</option></select></label>
+          <label>High latitude rule<select id="highLatSelect"><option value="NightMiddle">Middle of the Night</option><option value="AngleBased">Angle Based</option><option value="OneSeventh">One Seventh</option></select></label>
+          <button class="secondary-btn" id="applyPrayerSettings">Apply</button>
+        </div>
+        <div class="location-detail" id="locationDetail">No precise location yet.</div>
+        <div id="fullPrayerList" class="full-prayer-list"></div>
+        <div class="info-grid">
+          <div class="info-card"><strong>Timing transparency</strong><p>No single calculation is universally used everywhere. Noor shows the selected method, Asr school, high-latitude rule and local correction so users can compare them with a trusted local mosque.</p></div>
+          <div class="info-card"><strong>Local correction</strong><p>Use the settings panel to apply a minute adjustment when a local mosque timetable differs from the selected astronomical calculation.</p><button class="text-btn" id="openSettingsFromPrayer">Configure →</button></div>
+        </div>
+      </section>
+
+      <section id="view-quran" class="view">
+        <div class="page-intro"><div><div class="eyebrow">AL-QURAN</div><h2>Quran</h2><p>Read Arabic with a selectable translation, bookmark ayahs and continue from your last reading position.</p></div><button class="secondary-btn" id="quranSettingsBtn">Quran settings</button></div>
+        <div class="quran-toolbar"><input id="quranSearch" placeholder="Search surah name…" autocomplete="off" /><select id="editionSelect"><option value="en.sahih">English — Saheeh International</option><option value="en.asad">English — Muhammad Asad</option></select></div>
+        <div class="quran-actions"><button class="secondary-btn" id="continueQuranBtn">Continue reading</button><button class="secondary-btn" id="bookmarksBtn">Bookmarks</button><button class="secondary-btn" id="quranSearchWebBtn">Search verses</button></div>
+        <div id="quranSearchResults" class="search-results hidden"></div>
+        <div id="surahList" class="surah-list"></div>
+        <div id="surahReader" class="reader hidden"></div>
+      </section>
+
+      <section id="view-qibla" class="view">
+        <div class="page-intro"><div><div class="eyebrow">QIBLA</div><h2>Find the Qibla</h2><p>Uses the great-circle bearing from your current coordinates to the Kaaba.</p></div><button class="primary-btn" id="qiblaLocateBtn">Use precise location</button></div>
+        <div class="qibla-layout">
+          <div class="compass-card">
+            <div class="compass" id="compass"><div class="compass-ring"></div><div class="north">N</div><div class="needle" id="needle"><div class="needle-tip"></div><div class="needle-tail"></div></div><div class="kaaba-mark">▣</div></div>
+            <div class="qibla-degree" id="qiblaDegree">—°</div>
+            <div class="qibla-sub" id="qiblaSub">Enable location to calculate Qibla.</div>
+            <button class="secondary-btn" id="calibrateBtn">Enable phone compass</button>
+          </div>
+          <div class="qibla-facts">
+            <div class="fact"><span>Qibla bearing</span><strong id="qiblaBearingText">—</strong></div>
+            <div class="fact"><span>Distance to Kaaba</span><strong id="qiblaDistanceText">—</strong></div>
+            <div class="fact"><span>Coordinates</span><strong id="qiblaCoords">—</strong></div>
+            <div class="fact note"><span>Compass note</span><p>The fixed bearing is always available. Device orientation is optional because browser sensor access varies by phone and browser.</p></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="view-tools" class="view">
+        <div class="page-intro"><div><div class="eyebrow">EVERYDAY</div><h2>Islamic Tools</h2><p>Daily dhikr, duas, Asma al-Husna, Hijri dates, Ramadan planning, zakat and nearby mosque links.</p></div></div>
+        <div class="tool-grid">
+          <button class="tool-card" data-tool="tasbih"><span>◌</span><strong>Tasbih</strong><small>Dhikr counter with saved count</small></button>
+          <button class="tool-card" data-tool="duas"><span>✦</span><strong>Daily Duas</strong><small>Morning, evening and everyday duas</small></button>
+          <button class="tool-card" data-tool="names"><span>99</span><strong>99 Names of Allah</strong><small>Full Asma al-Husna list</small></button>
+          <button class="tool-card" data-tool="hijri"><span>☽</span><strong>Hijri Calendar</strong><small>Gregorian + Islamic dates</small></button>
+          <button class="tool-card" data-tool="zakat"><span>£</span><strong>Zakat Estimator</strong><small>Savings, assets and nisab</small></button>
+          <button class="tool-card" data-tool="mosques"><span>⌖</span><strong>Mosques Near Me</strong><small>Open nearby masjids in maps</small></button>
+          <button class="tool-card" data-tool="ramadan"><span>☼</span><strong>Ramadan</strong><small>Suhoor, Iftar and fasting tracker</small></button>
+          <button class="tool-card" data-tool="settings"><span>⚙</span><strong>Settings</strong><small>Location, timing and notifications</small></button>
+        </div>
+        <div id="toolPanel" class="tool-panel hidden"></div>
+      </section>
+    </main>
+  </div>
+
+  <div id="settingsModal" class="modal-backdrop hidden">
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="settingsTitle">
+      <div class="modal-head"><div><div class="eyebrow">SETTINGS</div><h3 id="settingsTitle">Personalise Noor</h3></div><button class="icon-btn" id="closeSettings">×</button></div>
+      <div class="modal-body">
+        <label class="setting-row"><span>Precise location</span><button class="secondary-btn" id="settingsLocateBtn">Use my location</button></label>
+        <label class="setting-row"><span>Prayer notifications while Noor is open</span><input id="notificationsToggle" type="checkbox" /></label>
+        <label class="setting-row"><span>Remind before prayer (minutes)</span><input id="reminderOffsetInput" type="number" min="0" max="60" value="0" step="1" /></label>
+        <label class="setting-row"><span>12-hour clock</span><input id="clockToggle" type="checkbox" /></label>
+        <label class="setting-row"><span>Apply local correction to prayer times (minutes)</span><input id="adjustmentInput" type="number" value="0" min="-30" max="30" step="1" /></label>
+        <div class="setting-note"><strong>Privacy</strong><p>Your precise coordinates and settings are stored locally on this device by Noor. They are sent to the timing/geocoding services only when you request location-based features.</p></div>
+        <div class="setting-note"><strong>Notifications</strong><p>Browser notification timing can be throttled while a page is suspended. This release therefore labels reminders as “while Noor is open”; reliable background Adhan delivery should use a native/mobile push system in a later app-store build.</p></div>
+      </div>
+      <div class="modal-foot"><button class="primary-btn" id="saveSettings">Save settings</button></div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

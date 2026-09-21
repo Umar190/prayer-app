@@ -40,3 +40,23 @@ with check (reporter_user_id = auth.uid());
 create index if not exists community_posts_created_at_idx on public.community_posts(created_at desc);
 create index if not exists community_posts_topic_idx on public.community_posts(topic);
 create index if not exists community_reports_post_id_idx on public.community_reports(post_id);
+
+
+-- Noor Plus entitlements (server-verified only; never write ACTIVE from the browser)
+create table if not exists public.subscription_entitlements (
+  user_id uuid primary key,
+  provider text not null check (provider in ('stripe','apple','google')),
+  provider_customer_id text,
+  provider_subscription_id text,
+  plan text check (plan in ('monthly','yearly','family')),
+  status text not null check (status in ('trialing','active','past_due','canceled','expired')),
+  current_period_end timestamptz,
+  updated_at timestamptz not null default now()
+);
+
+alter table public.subscription_entitlements enable row level security;
+
+create policy "users can read their own subscription entitlement"
+on public.subscription_entitlements for select
+to authenticated
+using (user_id = auth.uid());

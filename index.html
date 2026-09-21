@@ -23,7 +23,7 @@
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="default" />
   <link rel="icon" href="icon.svg" type="image/svg+xml" />
-  <link rel="stylesheet" href="styles-v23.css?v=22" />
+  <link rel="stylesheet" href="styles-v25.css?v=25" />
   <title>Noor — Prayer & Quran</title>
 </head>
 <body>
@@ -72,7 +72,7 @@
             <div class="hero-date" id="heroDate">—</div>
             <div class="next-caption">NEXT PRAYER</div>
             <div class="next-row">
-              <div><div class="next-name" id="nextPrayerName">—</div><div class="next-time" id="nextPrayerTime">--:--</div></div>
+              <div><div class="next-name" id="nextPrayerName">—</div><div class="next-time" id="nextPrayerTime">--:--</div><div class="next-end" id="nextPrayerEnd">Prayer window ends —</div></div>
               <div class="countdown" id="countdown">--:--:--</div>
             </div>
             <div class="hero-actions">
@@ -204,7 +204,7 @@
           <button class="tool-card" data-tool="moon"><span>☽</span><strong>Moon Watch</strong><small>Country-by-country hilal approaches & visibility</small></button>
           <button class="tool-card" data-tool="journey"><span>★</span><strong>Noor Journey</strong><small>Prayer + Quran progress, streaks and private points</small></button>
           <button class="tool-card" data-tool="community"><span>☁</span><strong>Ummah Community</strong><small>Respectful discussions, reflections and local topics</small></button>
-          <button class="tool-card premium-card" data-tool="premium"><span>◆</span><strong>Noor Plus</strong><small>Premium plans, trial & future exclusive tools</small></button>
+          <button class="tool-card premium-card" data-tool="premium"><span>◆</span><strong>Noor Plus</strong><small>7-day trial · £2.99/mo or £24.99/yr · no ads</small></button>
           <button class="tool-card" data-tool="settings"><span>⚙</span><strong>Settings</strong><small>Location, timing and notifications</small></button>
         </div>
       </section>
@@ -215,7 +215,7 @@
     <div class="modal premium-modal" role="dialog" aria-modal="true" aria-labelledby="premiumTitle">
       <div class="modal-head"><div><div class="eyebrow">NOOR PLUS</div><h3 id="premiumTitle">Keep the core free. Upgrade for deeper tools.</h3></div><button class="icon-btn" id="closePremium">×</button></div>
       <div class="modal-body">
-        <div class="premium-principles"><strong>Prayer times, basic Quran access, Qibla and core worship tools stay free.</strong><p>No ads are being added. Premium is for extra depth, downloads, advanced planning and convenience.</p></div>
+        <div class="premium-principles"><strong>Prayer times, basic Quran access, Qibla and core worship tools stay free.</strong><p>No ads are being added. Premium is for extra depth, downloads, advanced planning and convenience. <a class="premium-terms-link" href="terms.html" target="_blank" rel="noopener">Terms apply</a></p></div>
         <div class="premium-plans" id="premiumPlans"></div>
         <div class="premium-feature-grid" id="premiumFeatureGrid"></div>
         <p class="source-note">The buttons use public checkout links configured by Noor. Payment processing, trial billing and cancellations happen through the selected payment provider, not inside the browser's local storage.</p>
@@ -225,14 +225,14 @@
 
   <div id="settingsModal" class="modal-backdrop hidden">
     <div class="modal settings-modal" role="dialog" aria-modal="true" aria-labelledby="settingsTitle">
-      <div class="modal-head settings-head"><div><div class="eyebrow">SETTINGS</div><h3 id="settingsTitle">Personalise Noor</h3><p class="settings-subtitle">All Noor preferences in one full-screen page.</p></div><button class="icon-btn" id="closeSettings" aria-label="Close settings">×</button></div>
-      <div class="modal-body settings-page-body">
+      <div class="modal-head settings-head"><div><div class="eyebrow">SETTINGS</div><h3 id="settingsTitle">Personalise Noor</h3><p class="settings-subtitle">Everything in one page. Tap a section to edit it; changes apply immediately or when you save.</p></div><button class="icon-btn" id="closeSettings" aria-label="Close settings">×</button></div>
+      <div class="settings-quick-status"><span id="settingsTimingStatus">MCW · Hanafi</span><span id="settingsLocationStatus">Location —</span><span id="settingsThemeStatus">Light</span></div><div class="modal-body settings-page-body">
 <details class="settings-accordion settings-panel timing-settings-panel" open=open>
-<summary><span><b>Prayer timing</b><small>MCW · Standard Asr · location-based</small></span><span class="accordion-chevron" aria-hidden="true">⌄</span></summary>
+<summary><span><b>Prayer timing</b><small>MCW · Hanafi Asr · location-based</small></span><span class="accordion-chevron" aria-hidden="true">⌄</span></summary>
 
           <div class="settings-panel-head"><div><div class="settings-section-title">Prayer timing</div><strong>Use a location-appropriate calculation profile</strong><p class="settings-help">Prayer times depend on your coordinates, calculation convention, Asr school and high-latitude rule. Noor starts with a transparent location-based recommendation and lets you override it.</p></div><span class="settings-badge" id="timingProfileBadge">RECOMMENDED</span></div>
           <label class="settings-field"><span>Timing profile</span><select id="timingPresetSelect"><option value="recommended">Recommended for my location</option><option value="custom">Custom settings</option></select></label>
-          <div id="timingRecommendedNote" class="setting-note"></div><div class="timing-source-pill"><span>Default timing source</span><strong>Moonsighting Committee Worldwide (MCW)</strong><small>Standard Asr · local timezone · transparent settings</small></div>
+          <div id="timingRecommendedNote" class="setting-note"></div><div class="timing-source-pill"><span>Default timing source</span><strong>Moonsighting Committee Worldwide (MCW)</strong><small>Hanafi Asr · local timezone · transparent settings</small></div>
           <div id="customTimingFields" class="custom-timing-grid hidden">
             <label class="settings-field"><span>Calculation method</span><select id="settingsMethodSelect"></select></label>
             <label class="settings-field"><span>Asr school</span><select id="settingsSchoolSelect"><option value="0">Shafi / Maliki / Hanbali (standard)</option><option value="1">Hanafi</option></select></label>
@@ -304,6 +304,6 @@
   </div>
   <script src="community-config.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <script src="app-v23.js?v=23"></script>
+  <script src="app-v25.js?v=25"></script>
 </body>
 </html>

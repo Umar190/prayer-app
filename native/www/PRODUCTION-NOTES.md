@@ -71,3 +71,14 @@ Prophet stories are concise Quran-based summaries with references and lessons. I
 - Legacy v21 default (Hanafi + Night Middle) is migrated to the new recommended profile.
 - Local minute correction now affects the five prayer times only, not sunrise/sunset/midnight.
 - Settings are now a full-page mobile sheet / large single-page workspace with explicit recommended vs custom timing.
+
+
+## v23 timing/settings update
+- Default prayer timing profile is now Moonsighting Committee Worldwide (MCW), standard Asr, with explicit `shafaq=general`.
+- Recommended high-latitude rule uses One Seventh of the Night by default, consistent with current UK-facing MCW implementations.
+- Settings is presented as one full-screen mobile page using compact accordions.
+- Custom MCW twilight rule can be selected when MCW is used.
+
+
+### v23 verification
+Compared current UK-facing MCW implementations and major services. Noor defaults to MCW/standard Asr and keeps method/school/high-latitude settings explicit; exact prayer times can still vary by convention and local mosque timetable.

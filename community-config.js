@@ -11,7 +11,8 @@ window.NOOR_CONFIG = window.NOOR_CONFIG || {
   stripe: {
     monthlyUrl: '',
     yearlyUrl: '',
-    trialDays: 7
+    trialDays: 7,
+    customerPortalUrl: ''
   },
   community: {
     maxPostsPerHour: 10

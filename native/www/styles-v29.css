@@ -860,3 +860,50 @@ html[data-theme="dark"] .settings-modal .text-btn{color:#7ce0c5 !important;}
 html[data-theme="dark"] .card-top,
 html[data-theme="dark"] .verse-ref{color:#dec47a !important;}
 html[data-theme="dark"] .verse-card .text-btn{color:#edcc77 !important;}
+
+/* Noor v30: Quran reader dark-mode accessibility contrast */
+html[data-theme="dark"] .reader,
+html[data-theme="dark"] .reader *{
+  text-shadow:none;
+}
+html[data-theme="dark"] .reader{
+  background:linear-gradient(180deg,#10242e 0%,#0d1d26 100%);
+}
+html[data-theme="dark"] .ayah{
+  background:transparent;
+  color:#eef7f4;
+}
+html[data-theme="dark"] .ayah-arabic,
+html[data-theme="dark"] .ayah-arabic[translate="no"]{
+  color:#fff8e8 !important;
+  -webkit-text-fill-color:#fff8e8 !important;
+  opacity:1 !important;
+  font-weight:500;
+}
+html[data-theme="dark"] .ayah-trans{
+  color:#d9e6e2 !important;
+  opacity:1 !important;
+}
+html[data-theme="dark"] .ayah-trans strong{
+  color:#f0faf6 !important;
+}
+html[data-theme="dark"] .reader-meta,
+html[data-theme="dark"] .reader-tools,
+html[data-theme="dark"] .reader-tools .muted-small{
+  color:#aec2bd !important;
+}
+html[data-theme="dark"] .ayah-num{
+  background:#1b4b41;
+  color:#eafff8;
+}
+html[data-theme="dark"] .mini-action{
+  background:#edf5f2;
+  color:#116e5d;
+}
+html[data-theme="dark"] .ayah-urdu{
+  color:#fff3cf !important;
+  -webkit-text-fill-color:#fff3cf !important;
+}
+html[data-theme="dark"] .ayah-urdu strong{
+  color:#f0d17b !important;
+}

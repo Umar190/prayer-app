@@ -93,3 +93,11 @@ Compared current UK-facing MCW implementations and major services. Noor defaults
 - Settings is now a full-screen, scroll-contained mobile page with a sticky header/footer, quick status chips, Escape/backdrop close, and delegated open handling.
 - Added prayer-window end times to the home prayer cards and hero countdown. For the Hanafi profile, Noor maps Fajr→Sunrise, Dhuhr→Asr, Asr→Sunset, Maghrib→Isha, and Isha→Fajr; the UI labels this as guidance, not a fatwa.
 - Added Sunset to the internal timing data without exposing it as a sixth salah.
+
+
+## v31 Hijri calendar upgrade
+- Full 12-month Hijri year overview.
+- Clickable day cells with Gregorian equivalent and selected-date detail.
+- Hijri year selector with previous/next controls and jump-to-today.
+- Month data fetched from AlAdhan Hijri Calendar API with a Gregorian-calendar fallback.
+- Clear note that calculated Hijri dates can differ from local crescent/community announcements.

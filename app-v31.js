@@ -133,7 +133,7 @@ const PREMIUM_FEATURES = [
   {title:'Premium themes',desc:'Additional seasonal and Fajr-inspired visual themes.',state:'planned'}
 ];
 const PREMIUM_COMPARISON = [
-  ['Prayer times & MCW/Hanafi settings', '✓', '✓'],
+  ['Prayer times & MCW / Standard settings', '✓', '✓'],
   ['Qibla', '✓', '✓'],
   ['Full Quran reading', '✓', '✓'],
   ['English + Urdu translations', '✓', '✓'],
@@ -164,13 +164,13 @@ const COMMUNITY_SAMPLE_POSTS = [
 
 const state = {
   view:'home', lat:null, lon:null, location:null, timezone:null,
-  prayer:null, hijri:null, calendar:[], method:15, school:1, highLat:'OneSeventh', timingPreset:'recommended',
+  prayer:null, hijri:null, calendar:[], method:15, school:0, highLat:'AngleBased', timingPreset:'recommended',
   adjustment:0, use12h:false, notifications:false, reminderOffset:0, notificationPrayers:{Fajr:true,Dhuhr:true,Asr:true,Maghrib:true,Isha:true}, adhanEnabled:true, adhanAudioUrl:DEFAULT_ADHAN_URL, nextPrayer:null,
   quranChapters:[], openedSurah:null, quranEdition:'both', bookmarks:[], lastRead:null,
   tasbih:0, qiblaBearing:null, qiblaDistance:null, deviceHeading:0, manualHeading:0, compassMode:'fixed', compassActive:false, lastHeadingAt:0, qiblaAligned:false,
   tracker:{}, notified:{}, deferredInstall:null, audio:null, locationUpdatedAt:null, locationSampleAt:null, locationStatus:'unknown', autoLocation:true, lastLocationRefresh:0,
   points:0, pointLog:{}, engagementDays:{}, storyProgress:{}, eventReminders:{}, quranGoal:10, quranDaily:{}, quranBooksRead:{},
-  subscription:{status:'free',plan:null}, communityName:'', communityPosts:[], communityPostTimes:[], darkMode:true, currency:'GBP'
+  subscription:{status:'free',plan:null}, communityName:'', communityPosts:[], communityPostTimes:[], darkMode:true, currency:'GBP', hijriYearCache:{}, hijriSelected:null, hijriYear:null
 };
 
 function toast(msg){ const el=$('#toast'); el.textContent=msg; el.classList.add('show'); clearTimeout(toast.t); toast.t=setTimeout(()=>el.classList.remove('show'),2800); }
@@ -253,8 +253,8 @@ function restore(){
     const s=JSON.parse(raw); Object.assign(state,s);
     state.timingPreset=s.timingPreset||'recommended';
     state.shafaq=s.shafaq||'general';
-    if(state.timingPreset==='recommended'){ state.method=15; state.school=1; state.highLat='OneSeventh'; }
-    if(!s.timingPreset && Number(s.method||3)===3 && Number(s.school||1)===1 && (s.highLat||'NightMiddle')==='NightMiddle'){state.method=3;state.school=0;state.highLat='AngleBased';state.timingPreset='recommended';}
+    if(state.timingPreset==='recommended'){ state.method=15; state.school=0; state.highLat='AngleBased'; state.shafaq='general'; }
+    if(!s.timingPreset && Number(s.method||15)===15){state.method=15;state.school=0;state.highLat='AngleBased';state.shafaq='general';state.timingPreset='recommended';}
     state.notificationPrayers={Fajr:true,Dhuhr:true,Asr:true,Maghrib:true,Isha:true,...(s.notificationPrayers||{})};
     state.autoLocation=s.autoLocation!==false; state.adhanEnabled=s.adhanEnabled!==false; state.adhanAudioUrl=s.adhanAudioUrl || DEFAULT_ADHAN_URL;
     state.fasting=s.fasting||{}; state.points=Number(s.points||0); state.pointLog=s.pointLog||{}; state.engagementDays=s.engagementDays||{}; state.storyProgress=s.storyProgress||{}; state.eventReminders=s.eventReminders||{}; state.quranGoal=Number(s.quranGoal||10); state.quranDaily=s.quranDaily||{}; state.quranBooksRead=s.quranBooksRead||{}; state.subscription=s.subscription||{status:'free',plan:null}; state.darkMode=!!s.darkMode; state.currency=s.currency||'GBP'; state.communityName=s.communityName||''; state.communityPosts=Array.isArray(s.communityPosts)?s.communityPosts:[]; state.communityPostTimes=Array.isArray(s.communityPostTimes)?s.communityPostTimes:[];
@@ -330,7 +330,7 @@ async function handleRoutePop(){
 }
 
 
-const PRAYER_PROFILE_FALLBACK={countryLabel:'Location-based recommendation',method:15,school:1,highLat:'OneSeventh',methodName:'Moonsighting Committee Worldwide (MCW)',schoolName:'Hanafi',highLatName:'One Seventh of the Night'};
+const PRAYER_PROFILE_FALLBACK={countryLabel:'Location-based recommendation',method:15,school:0,highLat:'AngleBased',methodName:'Moonsighting Committee Worldwide (MCW)',schoolName:'Standard (Shafi / Maliki / Hanbali)',highLatName:'Standard MCW seasonal calculation'};
 function recommendedProfileForCountry(country=''){
   return {...PRAYER_PROFILE_FALLBACK,countryLabel:country||PRAYER_PROFILE_FALLBACK.countryLabel};
 }
@@ -340,7 +340,7 @@ function timingProfileInfo(){
 }
 function applyRecommendedTimingProfile(){
   const p=recommendedProfileForCountry(state.location?.country||'');
-  state.method=p.method;state.school=1;state.highLat=p.highLat;state.shafaq='general';state.timingPreset='recommended';
+  state.method=p.method;state.school=0;state.highLat=p.highLat;state.shafaq='general';state.timingPreset='recommended';
   syncTimingControls();
   return p;
 }
@@ -350,7 +350,7 @@ function syncTimingControls(){
   const preset=$('#timingPresetSelect');if(preset)preset.value=state.timingPreset||'recommended';
   const custom=$('#customTimingFields');if(custom)custom.classList.toggle('hidden',state.timingPreset!=='custom');
   const badge=$('#timingProfileBadge');if(badge){badge.textContent=state.timingPreset==='recommended'?'RECOMMENDED':'CUSTOM';badge.classList.toggle('custom',state.timingPreset==='custom');}
-  const rec=$('#timingRecommendedNote');if(rec){rec.innerHTML=state.timingPreset==='recommended'?`<strong>${escapeHtml(info.methodName)}</strong><p>${escapeHtml(info.schoolName)} · ${escapeHtml(info.highLatName)} · ${escapeHtml(info.countryLabel||'your location')}.</p><p>Noor now defaults to the Moonsighting Committee Worldwide (MCW) method with Hanafi Asr. Fajr, Dhuhr, Maghrib and Isha follow the MCW calculation profile; Asr uses the Hanafi shadow factor. Local mosque timetables can still differ by a few minutes, so Noor keeps the calculation method and local adjustment visible.</p>`:'<strong>Custom timing</strong><p>Use this when you intentionally follow a particular school, authority or trusted local mosque timetable.</p>';}
+  const rec=$('#timingRecommendedNote');if(rec){rec.innerHTML=state.timingPreset==='recommended'?`<strong>${escapeHtml(info.methodName)}</strong><p>${escapeHtml(info.schoolName)} · ${escapeHtml(info.highLatName)} · ${escapeHtml(info.countryLabel||'your location')}.</p><p>Noor now defaults to the Moonsighting Committee Worldwide (MCW) method with Standard Asr (Shafi'i, Maliki, Hanbali). Hanafi remains available as a separate option. MCW's published UK guidance uses seasonal/latitude-based Fajr and Isha research and does not apply the one-seventh shortcut at London latitude. Local mosque timetables can still differ by a few minutes, so Noor keeps the calculation method and local adjustment visible.</p>`:'<strong>Custom timing</strong><p>Use this when you intentionally follow a particular school, authority or trusted local mosque timetable.</p>';}
   const label=$('#timingProfileLabel');if(label)label.textContent=state.timingPreset==='recommended'?'Recommended for your location':'Custom calculation settings';
   const sub=$('#timingProfileSub');if(sub)sub.textContent=`${info.methodName} · ${info.schoolName}`;
   const src=$('#timingLocationSource');if(src)src.textContent=state.lat!=null?`Based on ${locationLabel()||'saved coordinates'}`:'Location not set';
@@ -1048,13 +1048,73 @@ async function loadNames(){
     $('#namesList').innerHTML=(d.data||[]).map(n=>`<article class="name-item"><div class="name-number">${n.number}</div><div><div class="name-ar" dir="rtl">${escapeHtml(n.name)}</div><strong>${escapeHtml(n.transliteration)}</strong><p>${escapeHtml(n.en?.meaning||'')}</p></div></article>`).join('');
   }catch{ $('#namesList').innerHTML='<div class="info-card">The names service could not load. Try again when online.</div>'; }
 }
-async function loadHijriPanel(){
-  const p=localParts();
+const HIJRI_MONTH_AR = ['مُحَرَّم','صَفَر','رَبيع الأوّل','رَبيع الثاني','جُمادى الأولى','جُمادى الآخرة','رَجَب','شَعْبان','رَمَضان','شَوّال','ذو القِعْدة','ذو الحِجّة'];
+const HIJRI_MONTH_EN = ['Muharram','Safar','Rabi al-Awwal','Rabi al-Thani','Jumada al-Awwal','Jumada al-Thani','Rajab','Shaʿban','Ramadan','Shawwal','Dhul-Qiʿdah','Dhul-Hijjah'];
+function gregDateKeyFromApi(g){ return `${g.year}-${pad(g.month)}-${pad(g.day)}`; }
+function parseApiDate(date){ const [dd,mm,yyyy]=String(date||'').split('-').map(Number); return Number.isFinite(dd)&&Number.isFinite(mm)&&Number.isFinite(yyyy)?new Date(yyyy,mm-1,dd):null; }
+function weekdayShort(date){ if(!date)return ''; return ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'][date.getDay()]||''; }
+function hijriMonthLabel(n){ return HIJRI_MONTH_EN[(Number(n)||1)-1] || `Month ${n}`; }
+async function fetchHijriMonth(year, month){
+  const key=`${year}-${month}`;
+  if(state.hijriYearCache?.[key]) return state.hijriYearCache[key];
+  const r=await fetch(prayerUrl(`https://api.aladhan.com/v1/hijriCalendar/${month}/${year}`),{cache:'no-store'});
+  if(!r.ok) throw new Error(`Hijri month ${month} failed`);
+  const d=await r.json(); const rows=d.data||[];
+  if(!rows.length) throw new Error(`Hijri month ${month} empty`);
+  state.hijriYearCache[key]=rows;
+  return rows;
+}
+function renderHijriYear(year, months){
+  const todayHijri=state.hijri ? `${state.hijri.year}-${state.hijri.month?.number}-${state.hijri.day}` : '';
+  const todayKey=state.hijri ? `${state.hijri.year}-${state.hijri.month?.number}-${state.hijri.day}` : '';
+  const selected=state.hijriSelected || todayKey;
+  const selectedRow=months.flat().find(x=>`${x.date.hijri.year}-${x.date.hijri.month.number}-${x.date.hijri.day}`===selected);
+  const detail=selectedRow ? (()=>{const gd=selectedRow.date.gregorian, hd=selectedRow.date.hijri; return `<div class="hijri-selected"><div><span class="eyebrow">SELECTED DATE</span><strong>${escapeHtml(hd.day)} ${escapeHtml(hd.month.en)} ${escapeHtml(hd.year)} AH</strong><small>${escapeHtml(gd.weekday?.en||'')} · ${escapeHtml(gd.date)} · ${escapeHtml(hd.designation||'AH')}</small></div><button class="mini-action" id="hijriTodayBtn">Go to today</button></div>`;})() : '';
+  const monthCards=months.map((rows,idx)=>{
+    const m=rows[0]?.date?.hijri?.month?.number || idx+1;
+    const en=rows[0]?.date?.hijri?.month?.en || hijriMonthLabel(m);
+    const ar=HIJRI_MONTH_AR[m-1]||'';
+    const firstDate=parseApiDate(rows[0]?.date?.gregorian?.date);
+    const start=(firstDate?((firstDate.getDay()+6)%7):0);
+    const blanks=Array.from({length:start},()=>`<span class="hijri-day blank" aria-hidden="true"></span>`).join('');
+    const cells=rows.map(x=>{
+      const h=x.date.hijri, g=x.date.gregorian; const key=`${h.year}-${h.month.number}-${h.day}`;
+      const cls=`hijri-day ${key===todayKey?'today':''} ${key===selected?'selected':''}`;
+      const gd=parseApiDate(g.date);
+      return `<button type="button" class="${cls}" data-hijri-select="${escapeHtml(key)}" title="${escapeHtml(g.weekday?.en||'')} ${escapeHtml(g.date)}"><strong>${escapeHtml(h.day)}</strong><small>${gd?gd.getDate():''}</small></button>`;
+    }).join('');
+    const gStart=rows[0]?.date?.gregorian?.date||''; const gEnd=rows[rows.length-1]?.date?.gregorian?.date||'';
+    return `<section class="hijri-month-card"><div class="hijri-month-head"><div><span>${escapeHtml(m)} · ${escapeHtml(en)}</span><strong dir="rtl">${escapeHtml(ar)}</strong></div><small>${escapeHtml(gStart)} → ${escapeHtml(gEnd)}</small></div><div class="hijri-week-labels"><span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span><span>Sun</span></div><div class="hijri-mini-grid">${blanks}${cells}</div></section>`;
+  }).join('');
+  $('#hijriPanel').innerHTML=`<div class="hijri-toolbar"><div><span class="eyebrow">HIJRI CALENDAR</span><strong>${year} AH</strong><small>Full 12-month lunar calendar · tap any date for details</small></div><div class="hijri-year-actions"><button class="mini-action" id="hijriPrevYear">← ${year-1}</button><select id="hijriYearSelect" aria-label="Hijri year">${[year-2,year-1,year,year+1,year+2].map(y=>`<option value="${y}" ${y===year?'selected':''}>${y} AH</option>`).join('')}</select><button class="mini-action" id="hijriNextYear">${year+1} →</button></div></div>${detail}<div class="hijri-year-grid">${monthCards}</div><p class="source-note">Calculated Hijri dates are provided as a calendar reference. Crescent-sighting and local/community announcements can differ by a day, especially for the beginning of Ramadan, Shawwal and Dhul-Hijjah.</p>`;
+  $$('[data-hijri-select]').forEach(b=>b.addEventListener('click',()=>{state.hijriSelected=b.dataset.hijriSelect; renderHijriYear(year,months);}));
+  $('#hijriPrevYear')?.addEventListener('click',()=>loadHijriPanel(year-1));
+  $('#hijriNextYear')?.addEventListener('click',()=>loadHijriPanel(year+1));
+  $('#hijriYearSelect')?.addEventListener('change',e=>loadHijriPanel(Number(e.target.value)));
+  $('#hijriTodayBtn')?.addEventListener('click',()=>{state.hijriSelected=todayHijri;renderHijriYear(year,months);});
+}
+async function loadHijriPanel(yearOverride){
+  const el=$('#hijriPanel'); if(!el)return;
+  const currentYear=Number(yearOverride || state.hijri?.year || 1448); state.hijriYear=currentYear;
+  el.innerHTML=`<div class="info-card">Loading the full ${currentYear} AH calendar…</div>`;
   try{
-    const r=await fetch(prayerUrl(`https://api.aladhan.com/v1/calendar/${p.year}/${p.month}`)); if(!r.ok)throw new Error(); const d=await r.json(); const rows=d.data||[];
-    const x=rows.map(v=>({g:v.date.gregorian,h:v.date.hijri}));
-    $('#hijriPanel').innerHTML=`<div class="calendar-grid">${x.map(v=>`<div class="calendar-cell ${v.g.date===`${pad(p.day)}-${pad(p.month)}-${p.year}`?'today':''}"><strong>${v.g.day}</strong><span>${v.h.day}</span><small>${escapeHtml(v.h.month.en)}</small></div>`).join('')}</div><p class="source-note">The Hijri calendar is computed according to the selected calendar convention. Crescent-sighting practices can differ from calculated dates.</p>`;
-  }catch{ $('#hijriPanel').innerHTML='<div class="info-card">Hijri calendar data could not load.</div>'; }
+    const months=await Promise.all(Array.from({length:12},(_,i)=>fetchHijriMonth(currentYear,i+1)));
+    renderHijriYear(currentYear,months);
+  }catch(err){
+    // Fallback: convert a broad Gregorian range into Hijri data and group it into the requested year.
+    try{
+      const approxStartYear=Math.floor(621.5649 + (currentYear/33.7));
+      const gMonths=[]; for(let i=-1;i<14;i++){const d=new Date(approxStartYear,i,1);gMonths.push([d.getFullYear(),d.getMonth()+1]);}
+      const results=await Promise.all(gMonths.map(([y,m])=>fetch(prayerUrl(`https://api.aladhan.com/v1/calendar/${y}/${m}`),{cache:'no-store'}).then(r=>r.ok?r.json():Promise.reject(r.status))));
+      const filtered=results.flatMap(x=>x.data||[]).filter(x=>Number(x?.date?.hijri?.year)===currentYear);
+      const months=Array.from({length:12},(_,i)=>filtered.filter(x=>Number(x?.date?.hijri?.month?.number)===i+1));
+      if(months.some(m=>!m.length)) throw err;
+      state.hijriYearCache={...state.hijriYearCache}; months.forEach((rows,i)=>state.hijriYearCache[`${currentYear}-${i+1}`]=rows);
+      renderHijriYear(currentYear,months);
+    }catch{
+      el.innerHTML='<div class="info-card">The full Hijri calendar could not load. Check your connection and try again.</div>';
+    }
+  }
 }
 async function loadRamadanPanel(){
   if(state.lat==null){$('#ramadanPanel').innerHTML='<div class="info-card">Enable precise location first so Noor can calculate Suhoor/Fajr and Iftar/Maghrib for your coordinates.</div>';return;}

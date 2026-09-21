@@ -101,3 +101,7 @@ Compared current UK-facing MCW implementations and major services. Noor defaults
 - Hijri year selector with previous/next controls and jump-to-today.
 - Month data fetched from AlAdhan Hijri Calendar API with a Gregorian-calendar fallback.
 - Clear note that calculated Hijri dates can differ from local crescent/community announcements.
+
+
+## v35 Hijri calendar fix
+The full Hijri calendar now builds from the same Gregorian calendar endpoint already used successfully by Noor, fetched in small batches to avoid browser/API rate limits. The direct Hijri-month endpoint is not required for the UI.

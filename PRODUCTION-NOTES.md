@@ -1,0 +1,22 @@
+# Noor production notes
+
+## Web/PWA
+Deploy the repository root to GitHub Pages. The app stores the last successful location locally and refreshes GPS automatically when permission remains granted. Daily/7-day prayer data is cached to reduce repeated API calls and to keep the last known schedule available if the timing service is temporarily unavailable.
+
+## Notification behaviour
+The web app uses the Notification API and a service worker for persistent system notifications when supported. It includes per-prayer toggles, reminder timing, a notification test and optional user-supplied/licensed Adhan audio for foreground playback.
+
+A browser-only GitHub Pages site cannot promise exact time-based audio notifications after the browser/page is suspended. Web Push can work in supported installed web apps, including Home Screen web apps on modern iOS/iPadOS, but it requires a server-side push service to send the messages.
+
+## Native route for exact Adhan
+The `native/` folder is a Capacitor-ready layer for Android/iOS local notification scheduling. Capacitor's Local Notifications plugin can schedule notifications on-device. For the final store builds, use a properly licensed Adhan recording as the native notification sound and schedule the next several days from Noor's current prayer-time calculation.
+
+
+## Final touch decisions
+The default web Adhan uses a CC0 public-domain recording from Wikimedia Commons. This is not AI-generated; a suitable AI voice generator is not available in the build environment, so a clearly licensed recording was chosen instead of shipping an unverified copyrighted recording. For the native store builds, bundle the same audio locally after verifying the source/license and device compatibility.
+
+The web build now includes a privacy page, local-data reset, default Adhan source notice, test playback, and a service-worker version bump.
+
+
+## v5 content additions
+Prophet stories are concise Quran-based summaries with references and lessons. Islamic-event dates are presented as calculated dates and explicitly note that local moon sighting/community practice can differ.

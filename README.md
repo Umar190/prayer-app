@@ -1,49 +1,38 @@
-# Noor — Prayer & Quran
+# Noor — Prayer & Quran (Production v7)
 
-Noor is a mobile-first Progressive Web App focused on location-based prayer timing and everyday Quran/Islamic tools.
+Noor is a location-first Muslim prayer and learning PWA designed to keep the core worship experience free and ad-free, while offering optional Plus features for deeper study and convenience.
 
-## Included in this release
+## Included
+- GPS-based prayer times with configurable calculation method, school, high-latitude rule and local correction
+- Persistent location with automatic refresh/fallback
+- Qibla bearing and phone compass support
+- Quran reader, source-fetched Arabic, published translations, audio, bookmarks and progress
+- Prayer tracker, Quran goal tracker, Ramadan tracker, Hijri calendar and Islamic events
+- Moon Watch country guide + visibility forecast links
+- Source-linked Prophet Stories with authenticity guardrails
+- Tasbih, duas, 99 Names, Zakat estimator and mosque links
+- Ummah Community UI with topic channels, reporting and optional Supabase backend
+- Noor Plus plan UI with free/trial/monthly/yearly structure
+- Installable PWA + native notification scaffolding
+- Privacy page and content-integrity policy
 
-- Precise browser GPS location with locality/town/city reverse geocoding.
-- Prayer times calculated from latitude/longitude through the AlAdhan API.
-- 23+ calculation methods, Hanafi/standard Asr selection, high-latitude rule and minute correction.
-- Next prayer countdown that uses the timing service's local timezone rather than blindly assuming the device timezone.
-- Seven-day prayer schedule.
-- Five-prayer tracker saved locally by date.
-- Qibla bearing and great-circle distance to the Kaaba with optional device orientation sensor.
-- Quran catalogue for all 114 surahs.
-- Arabic + selectable English translation, verse-level audio and sequential surah playback.
-- Surah search, verse search, bookmarks and last-reading position.
-- Daily Ayah card.
-- Tasbih counter with quick presets and local persistence.
-- Daily dua library.
-- Full 99 Names of Allah from the AlAdhan Asma al-Husna API.
-- Hijri calendar for the current Gregorian month.
-- Ramadan planner using location-based Fajr/Maghrib times.
-- Zakat estimator with configurable nisab threshold.
-- Nearby mosque links to maps.
-- Installable PWA shell with offline app-shell caching.
-- Browser reminders while Noor is open.
-- Privacy/settings notes and transparent calculation settings.
+## Important before a public commercial launch
 
-## Data sources
+1. Configure the online Community backend using `COMMUNITY-SETUP.md` and `supabase-schema.sql`.
+2. Configure public Stripe checkout links using `SUBSCRIPTION-SETUP.md`. The repository contains no Stripe secret keys and does not pretend billing is live until links are supplied.
+3. For native iOS/Android release, implement App Store / Google Play subscription entitlements and device-scheduled prayer notifications.
+4. Keep Qur'an and religious source content source-attributed. Do not replace published Qur'an Arabic or translations with AI-generated text.
 
-- AlAdhan: prayer timings, calculation methods, calendar, Asma al-Husna.
-- BigDataCloud: browser reverse geocoding from GPS coordinates.
-- Al Quran Cloud: Quran chapters, Arabic text, translations and audio/CDN.
+## Core religious-content rule
 
-## Important launch notes
+Qur'an Arabic is fetched from the selected source; Noor does not AI-rewrite it. Prophet Stories are explicitly labelled as summaries with Qur'an references and should not introduce unsupported dialogue or historical details. See `CONTENT-INTEGRITY.md`.
 
-1. Quran Foundation's current Content API uses authenticated backend credentials. This build therefore uses the open Al Quran Cloud endpoints for the public prototype rather than exposing Quran Foundation secrets in the browser.
-2. Browser notification scheduling is not equivalent to reliable native background push. For an App Store / Google Play production build, use native local notifications or a server-backed push system.
-3. A “precise” prayer time is still convention-dependent. Noor exposes calculation method, Asr school, high-latitude rule and local correction instead of presenting one universal number as religiously authoritative.
-4. Add a public privacy policy, terms, support contact, data-provider notices and final religious-content review before commercial publication.
-5. For mosque discovery at scale, use a proper places/geodata provider or your own licensed database rather than depending on public geocoding infrastructure for heavy traffic.
 
-## Run locally
-
-Serve the folder over HTTP/HTTPS; do not open index.html directly if you want geolocation, notifications and service-worker behaviour.
-
-`python3 -m http.server 8080`
-
-Then open `http://localhost:8080`.
+## Final touch changes
+- Delayed, dismissible review/feedback prompt.
+- Quran Arabic output is escaped before DOM insertion.
+- Community reports now include the reporter ID required by the database policy.
+- Added server-side community posting rate limiting.
+- Dua cards show their fixed source references.
+- Tightened wording for community-dependent Islamic dates.
+- Native/www runtime is synced to the same web build.

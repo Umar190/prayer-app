@@ -32,3 +32,14 @@ Qur'an Arabic is fetched from the selected source; Noor does not AI-rewrite it. 
 - GitHub Pages project-site base path pinned to `/prayer-app/` so asset loading works even when the URL is opened without a trailing slash.
 - Qibla arrow now carries a readable QIBLA marker.
 - Orientation permission requests magnetometer access where supported and only treats absolute orientation as a true North heading.
+
+
+### Qibla alignment guide (v16)
+On supported phones, Noor now keeps a fixed QIBLA target box at the top of the compass. Turn the phone until the moving Qibla arrow enters the box. When you are within 8 degrees, the target changes to the aligned state and the guidance message confirms it. On desktop, the interactive dial uses the same alignment model.
+
+
+## v18 update
+- Added multi-currency support for Zakat and related money tools.
+- Added user-selectable dark mode.
+- Increased headings and mobile bottom navigation label sizes for readability.
+- Updated cache/assets to v18.

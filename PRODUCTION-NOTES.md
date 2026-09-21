@@ -33,3 +33,19 @@ Prophet stories are concise Quran-based summaries with references and lessons. I
 ## v15 Zakat fix
 - Zakat estimate now recalculates live when assets, liabilities, or nisab changes.
 - UI explains that nisab changes eligibility; when assets remain above the chosen threshold, the 2.5% estimate itself remains the same.
+
+
+## v17 update
+- Added multi-currency support for Zakat and related money tools.
+- Added user-selectable dark mode.
+- Increased headings and mobile bottom navigation label sizes for readability.
+- Updated cache/assets to v17.
+
+
+## v18 final touches
+- Added browser-history routes for Quran readers so iPhone edge-swipe and Mac two-finger browser-back gestures can return from a surah when the browser supports those gestures.
+- Added source-provided Urdu translation option (Fateh Muhammad Jalandhry) and a combined English+Urdu reader mode.
+- Quran Arabic and translations are escaped before DOM insertion and marked notranslatable.
+- Added Terms & Conditions plus a religious/calculation disclaimer, including explicit Zakat self-check/qualified-scholar language.
+- Updated Privacy page asset reference to v18 styles.
+- Reminder: legal pages are drafts and require final business/contact details and legal review before commercial launch.

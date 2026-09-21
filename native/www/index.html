@@ -7,7 +7,7 @@
   <meta name="description" content="Noor — prayer times, Quran, Qibla, duas, dhikr, Hijri calendar, moon sighting and Islamic learning tools." />
   <meta name="google" content="notranslate" />
   <base href="/prayer-app/" />
-  <link rel="manifest" href="manifest.webmanifest?v=14" />
+  <link rel="manifest" href="manifest.webmanifest?v=18" />
   <script>
     (function(){
       try {
@@ -23,7 +23,7 @@
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="default" />
   <link rel="icon" href="icon.svg" type="image/svg+xml" />
-  <link rel="stylesheet" href="styles-v15.css?v=15" />
+  <link rel="stylesheet" href="styles-v18.css?v=18" />
   <title>Noor — Prayer & Quran</title>
 </head>
 <body>
@@ -103,6 +103,8 @@
           <div id="weekSchedule" class="week-schedule"></div>
         </section>
 
+<div class="legal-links"><a href="terms.html" target="_blank" rel="noopener">Terms &amp; Conditions</a><a href="terms.html#religious" target="_blank" rel="noopener">Religious &amp; calculation disclaimer</a><a href="privacy.html" target="_blank" rel="noopener">Privacy</a></div>
+
         <section class="quick-grid">
           <button class="quick-card" data-view-jump="quran"><span class="quick-icon">۞</span><div><strong>Continue Quran</strong><small id="quranProgressText">Start reading</small></div><span>→</span></button>
           <button class="quick-card" data-view-jump="qibla"><span class="quick-icon">🧭</span><div><strong>Qibla</strong><small id="qiblaQuick">Direction from your location</small></div><span>→</span></button>
@@ -132,9 +134,9 @@
 
       <section id="view-quran" class="view">
         <div class="page-intro"><div><div class="eyebrow">AL-QURAN</div><h2>Quran</h2><p>Read the Quran with source-provided Arabic text. Noor does not AI-rewrite Quranic verses.</p></div><button class="secondary-btn" id="quranSettingsBtn">Quran settings</button></div>
-        <div class="quran-integrity-card"><strong>Quran integrity mode</strong><span>Arabic is shown exactly as returned by the selected Quran text source. Browser translation is disabled for Quran text.</span></div>
+        <div class="quran-integrity-card"><strong>Quran integrity mode</strong><span>Arabic is shown exactly as returned by the selected Quran text source. The Urdu option uses the source-provided Fateh Muhammad Jalandhry translation; Noor does not AI-translate or rewrite Quranic text.</span></div>
         <div class="quran-goal-card" id="quranGoalCard"></div>
-        <div class="quran-toolbar"><input id="quranSearch" placeholder="Search surah name…" autocomplete="off" /><select id="editionSelect"><option value="en.sahih">English — Saheeh International</option><option value="en.asad">English — Muhammad Asad</option></select></div>
+        <div class="quran-toolbar"><input id="quranSearch" placeholder="Search surah name…" autocomplete="off" /><select id="editionSelect" aria-label="Quran translation"><option value="en.sahih">English — Saheeh International</option><option value="ur.jalandhry">Urdu — Fateh Muhammad Jalandhry</option><option value="both">English + Urdu</option><option value="en.asad">English — Muhammad Asad</option></select></div>
         <div class="quran-actions"><button class="secondary-btn" id="continueQuranBtn">Continue reading</button><button class="secondary-btn" id="bookmarksBtn">Bookmarks</button><button class="secondary-btn" id="quranSearchWebBtn">Search verses</button><button class="secondary-btn" id="quranGoalBtn">Reading goal</button></div>
         <div id="quranSearchResults" class="search-results hidden"></div>
         <div id="surahList" class="surah-list"></div>
@@ -152,7 +154,8 @@
                 <div class="compass-ring"></div>
                 <div class="compass-ticks" aria-hidden="true"></div>
                 <div class="north">N</div><div class="east">E</div><div class="south">S</div><div class="west">W</div>
-                <div class="needle" id="needle"><div class="needle-tip"></div><div class="needle-label" id="needleLabel">QIBLA</div><div class="needle-tail"></div></div>
+                <div class="qibla-target" id="qiblaTarget" aria-hidden="true"><span class="qibla-target-title">QIBLA</span><span class="qibla-target-sub">ALIGN</span></div>
+                <div class="needle" id="needle"><div class="needle-tip"></div><div class="needle-tail"></div></div>
                 <div class="kaaba-mark"><span>✦</span></div>
                 <div class="compass-center"></div>
               </div>
@@ -160,6 +163,7 @@
             </div>
             <div class="qibla-degree" id="qiblaDegree">—°</div>
             <div class="qibla-sub" id="qiblaSub">Enable location to calculate Qibla.</div>
+            <div class="qibla-guide" id="qiblaGuide">Turn your phone until the arrow enters the Qibla box.</div>
             <div class="qibla-actions"><button class="primary-btn" id="calibrateBtn">Enable live phone compass</button><button class="secondary-btn" id="resetCompassBtn" type="button">Reset direction</button></div>
           </div>
           <div class="qibla-facts">
@@ -224,6 +228,10 @@
     <div class="modal" role="dialog" aria-modal="true" aria-labelledby="settingsTitle">
       <div class="modal-head"><div><div class="eyebrow">SETTINGS</div><h3 id="settingsTitle">Personalise Noor</h3></div><button class="icon-btn" id="closeSettings">×</button></div>
       <div class="modal-body">
+        <div class="settings-section-title">Appearance & money</div>
+        <label class="setting-row"><span>Dark mode</span><input id="darkModeToggle" type="checkbox" /></label>
+        <label class="setting-row"><span>Default currency</span><select id="currencySelect"></select></label>
+        <div class="setting-note"><strong>Currency note</strong><p>Noor uses your selected currency for tools such as Zakat. Amounts are not automatically converted between currencies.</p></div>
         <label class="setting-row"><span>Precise location</span><button class="secondary-btn" id="settingsLocateBtn">Use my location</button></label>
         <label class="setting-row"><span>Automatic location refresh</span><input id="autoLocationToggle" type="checkbox" checked /></label>
         <div class="setting-note"><strong id="locationStatusText">Automatic location is enabled</strong><p>Noor remembers the last successful GPS position. When permission is still granted, it silently checks for a fresher position when you return to the app instead of asking you every time.</p></div>
@@ -241,7 +249,7 @@
         </div>
         <label class="setting-row"><span>12-hour clock</span><input id="clockToggle" type="checkbox" /></label>
         <label class="setting-row"><span>Apply local correction to prayer times (minutes)</span><input id="adjustmentInput" type="number" value="0" min="-30" max="30" step="1" /></label>
-        <div class="setting-note"><strong>Privacy</strong><p>Your precise coordinates and settings are stored locally on this device by Noor. They are sent to the timing/geocoding services only when you request location-based features.</p><div class="privacy-actions"><a class="text-btn" href="privacy.html" target="_blank" rel="noopener">Privacy details →</a><button class="text-btn" id="resetSettingsBtn" type="button">Reset local data →</button></div></div>
+        <div class="setting-note"><strong>Privacy</strong><p>Your precise coordinates and settings are stored locally on this device by Noor. They are sent to the timing/geocoding services only when you request location-based features.</p><div class="privacy-actions"><a class="text-btn" href="privacy.html" target="_blank" rel="noopener">Privacy details →</a><a class="text-btn" href="terms.html" target="_blank" rel="noopener">Terms &amp; conditions →</a><a class="text-btn" href="terms.html#religious" target="_blank" rel="noopener">Religious disclaimer →</a><button class="text-btn" id="resetSettingsBtn" type="button">Reset local data →</button></div></div>
       </div>
       <div class="modal-foot"><button class="primary-btn" id="saveSettings">Save settings</button></div>
     </div>
@@ -249,6 +257,6 @@
 
   <script src="community-config.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <script src="app-v15.js?v=15"></script>
+  <script src="app-v18.js?v=18"></script>
 </body>
 </html>

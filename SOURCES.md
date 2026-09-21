@@ -16,3 +16,7 @@ Calculated dates come from the selected Hijri calendar service. The app distingu
 
 ## Gamification
 Noor Points are app engagement points only. They are not presented as religious reward, piety, status, or a substitute for sincere worship.
+
+## Quran translation integrity
+- Urdu translation option: Fateh Muhammad Jalandhry (`ur.jalandhry`) served from the Quran data provider. Noor displays the fetched translation rather than AI-translating or paraphrasing it.
+- Quran Foundation warns against automatic browser translation of vetted translations because re-translation can introduce semantic errors; Noor disables translation on Quran text.

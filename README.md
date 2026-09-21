@@ -54,3 +54,7 @@ On supported phones, Noor now keeps a fixed QIBLA target box at the top of the c
 
 ### Urdu Quran
 The Quran reader now exposes prominent English / اردو / Both controls. Urdu text is fetched as the source-provided `ur.jalandhry` translation (Fatah Muhammad Jalandhri); Noor never AI-translates or rewrites Quranic text.
+
+
+### v36 Hijri calendar
+The full Hijri year is generated locally from the browser calendar implementation, so the calendar does not depend on a live API call to render.

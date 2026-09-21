@@ -1,6 +1,6 @@
-const CACHE_NAME = "noor-v35-20260921";
+const CACHE_NAME = "noor-v36-20260921";
 const APP_SHELL = [
-  "./", "./index.html", "./styles-v35.css?v=35", "./app-v35.js?v=35", "./manifest.webmanifest", "./icon.svg",
+  "./", "./index.html", "./styles-v36.css?v=36", "./app-v36.js?v=36", "./manifest.webmanifest", "./icon.svg",
   "./privacy.html", "./terms.html"
 ];
 self.addEventListener("install", e => {

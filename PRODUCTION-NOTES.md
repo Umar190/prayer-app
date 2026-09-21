@@ -105,3 +105,8 @@ Compared current UK-facing MCW implementations and major services. Noor defaults
 
 ## v35 Hijri calendar fix
 The full Hijri calendar now builds from the same Gregorian calendar endpoint already used successfully by Noor, fetched in small batches to avoid browser/API rate limits. The direct Hijri-month endpoint is not required for the UI.
+
+## v36 Hijri calendar reliability fix
+- Replaced API-dependent Hijri year generation with local browser ICU/Umm al-Qura calendar generation, with an Islamic civil fallback.
+- Full 12-month year is generated locally and cached on-device, avoiding API/CORS/rate-limit failures.
+- Calendar remains explicitly labelled as a calculated reference; local sighting/community dates can differ.
